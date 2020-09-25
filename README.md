@@ -5,17 +5,10 @@ This is the backend for the Flask React project.
 ## Getting started
 
 1. Clone this repository
-2. Install dependencies (`pipenv install --python=python3`)
-3. Create a **.env** file based on the example with proper settings for your
+2. Create a **.env** file based on the example with proper settings for your
    development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file with CREATEDB privileges
-
-5. Run
-   * `pipenv run database.py`
-   * `pipenv run flask run`
-
-To run the React Client application, checkout the readme inside the client directory.
-
+3. Follow instructions in the [`starter_app/README.md`](./starter_app/README.md) to setup your development Back-End.
+4. Follow instructions in the [`client/README.md`](./client/README.md) to set up your development Front-End.
 
 ## Deploy to Heroku
 
@@ -24,8 +17,8 @@ To run the React Client application, checkout the readme inside the client direc
 3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
 4. Run `$ heroku login`
 5. Login to the heroku container registry `$ heroku container:login`
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.  This should be the full URL of your react app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku (this will build the dockerfile, and push) `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
+6. CD into `starter_app` and push your backend docker container to heroku (this will build the Flask dockerfile, and push) `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
+7. CD into `client` and push your backend docker container to heroku (this will build the Flask dockerfile, and push) `$ heroku container:push web -a {NAME_OF_HEROKU_APP}`
 8. Release your docker container to heroku `$ heroku container:release web -a {NAME_OF_HEROKU_APP}`
 9. set up your database:
 ```bash
