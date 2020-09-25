@@ -7,11 +7,11 @@ COPY . .
 RUN ["pip", "install", "-r", "requirements.txt"]
 
 # Setup Flask environment
-ENV FLASK_APP=starter_app
+ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
 
 EXPOSE 8000
 
 # Run flask environment
-CMD gunicorn starter_app:app
+CMD gunicorn app:app
