@@ -5,8 +5,7 @@ This is the backend for the Flask React project.
 ## Getting started
 
 1. Clone this repository
-2. Create a **.env** file based on the example with proper settings for your
-   development environment
+2. Create a **.env** file based on the example with proper settings for your development environment
 3. Follow instructions in the [`starter_app/README.md`](./starter_app/README.md) to setup your development Back-End.
 4. Follow instructions in the [`client/README.md`](./client/README.md) to set up your development Front-End.
 
