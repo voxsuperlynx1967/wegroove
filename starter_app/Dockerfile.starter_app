@@ -1,4 +1,4 @@
-FROM Python:3.8-slim as base
+FROM python:3.8-slim as base
 
 WORKDIR /var/www
 COPY . .
