@@ -1,0 +1,53 @@
+svg {
+    height: 500px;
+  }
+
+  .pagewrapper {
+    background-image: url("../components/Beatles.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vw;
+    width: 100vw;
+  }
+
+
+  /* form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
+  }
+   */
+  .MuiContainer-root {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* #textfield1 {
+    border-radius: 5px 5px 0px 0px;
+  }
+
+  #textfield2 {
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  #textfield3 {
+    border-radius: 0px 0px 5px 5px;
+  } */
+
+  #bigspan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0px 47px 0px;
+  }
+  span {
+   color: white;
+   font-family: "Helvetica Neue";
+   font-size: 20px;
+   font-weight: bold;
+   padding-bottom: 20px;
+  }
