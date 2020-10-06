@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup } from '../store/auth';
+// import { signup } from '../store/auth';
 import { Container } from '@material-ui/core';
-import YumblrLogo from '../components/auth/YumblrLogo';
-import AuthSubmitButton from '../components/auth/AuthSubmitButton';
-import './SignupPage.css';
+import GrooveLogo from '../components/GrooveLogo';
+import SpecialButton from '../components/SpecialButton';
+import './LandingPage.css';
 import { makeStyles } from "@material-ui/core/styles";
-import AuthTextField from '../components/auth/AuthTextField';
-import { NavLink } from 'react-router-dom';
-import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
-import { useHistory } from "react-router-dom";
+import SpecialTextField from '../components/SpecialTextField';
+// import { NavLink } from 'react-router-dom';
+// import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
+// import { useHistory } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { Redirect } from 'react-router-dom'
-import SignupNavBar from "../components/auth/SignupNavBar";
+
+
+// import { Redirect } from 'react-router-dom'
+
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+  } from 'react-places-autocomplete';
+
+import Geocode from "react-geocode";
+
+// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+Geocode.setApiKey("AIzaSyDirIihZcTuaXMGGfCdU7dCD1DhtfsC-eA");
+
+// set response language. Defaults to english.
+Geocode.setLanguage("en");
+
+// Enable or disable logs. Its optional.
+Geocode.enableDebug();
 
 const useStyles = makeStyles({
   container: {
@@ -50,67 +67,145 @@ const theme = createMuiTheme({
   },
 });
 
+
+
+
 function SignupPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const dispatch = useDispatch();
-  const classes = useStyles();
-  const history = useHistory();
-  const currentUserId = useSelector(state => state.auth.id);
+    const [display, setDisplay] = useState(false);
+    const [options, setOptions] = useState([]);
+    const [address, setAddress] = useState("");
+    const wrapperRef = useRef(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await dispatch(signup( email, password, username ));
-    history.push("/dashboard");
-  }
+    const setItem = item => {
 
-  if (currentUserId) return <Redirect to="/dashboard" />;
+        setAddress(item)
+        setDisplay(false);
+    }
+    const handleAddressChange = (e) => {
+
+        setAddress(e.target.value)
+
+    }
+
+    const handleAddressInput = async (e) => {
+        let search2 = e.target.value
+        console.log(search2)
+        if (search2) {
+            if (search2.includes(" ")) {
+                const searchval = search2.split(" ")
+                search2 = searchval.join("+")
+            }
+        }
+        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${search2}&key=AIzaSyDirIihZcTuaXMGGfCdU7dCD1DhtfsC-eA`)
+        const res = await response.json()
+        const predictions = res.predictions
+        const nicelist = predictions.map(prediction => prediction.description)
+        const small = nicelist.slice(0,3)
+        setOptions(small)
+        setDisplay(!display)
+
+    }
+
+   useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
+    }, [])
+
+    const handleClickOutside = event => {
+        const {current: wrap} = wrapperRef;
+        if (wrap && !wrap.contains(event.target)) {
+            setDisplay(false)
+        }
+    }
+
+
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [username, setUsername] = useState('');
+//   const dispatch = useDispatch();
+    const classes = useStyles();
+    // https://maps.googleapis.com/maps/api/place/autocomplete/json?input=1600+Amphitheatre&key=AIzaSyDirIihZcTuaXMGGfCdU7dCD1DhtfsC-eA
+
+    // Geocode.fromAddress("99 Harris Ave, Needham, MA").then(
+    //     response => {
+    //     const { lat, lng } = response.results[0].geometry.location;
+    //     console.log(lat, lng);
+    //     },
+    //     error => {
+    //     console.error(error);
+    //     }
+    // );
+//   const history = useHistory();
+//   const currentUserId = useSelector(state => state.auth.id);
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     await dispatch(signup( email, password, username ));
+//     history.push("/dashboard");
+//   }
+
+//   if (currentUserId) return <Redirect to="/dashboard" />;
   return (
-    <div class="page-wrapper">
-      <SignupNavBar/>
+    <div class="pagewrapper">
       <Container
         classes={{ root: classes.container }}
         fixed
         maxWidth="sm">
-        <YumblrLogo id="yumblrlogo1"/>
+        <GrooveLogo id="groovelogo1"/>
         <span id="bigspan">
-          <span>Come for what you crave.
+          <span>Some people want the world.
           </span>
-          <span>Stay for what you devour.
+          <span>Others just want good tone.
           </span>
         </span>
-        <form onSubmit={handleSubmit}>
+        <form>
           <ThemeProvider theme={theme}>
-            <AuthTextField id="textfield1"
+            <SpecialTextField id="textfield1"
               placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+            //   value={email}
+            //   onChange={e => setEmail(e.target.value)}
             />
 
-            <AuthTextField id="textfield2"
+            <SpecialTextField id="textfield2"
               type="password"
               placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+            //   value={password}
+            //   onChange={e => setPassword(e.target.value)}
               />
-            <AuthTextField id="textfield3"
-              placeholder="Username"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
+            <SpecialTextField id="textfield3"
+              placeholder="First name"
+            //   value={username}
+            //   onChange={e => setUsername(e.target.value)}
               />
 
-            <AuthSubmitButton>Sign up</AuthSubmitButton>
+            <SpecialTextField id="textfield4"
+              placeholder="Last name"
+            //   value={username}
+            //   onChange={e => setUsername(e.target.value)}
+              />
+
+                <SpecialTextField id="textfield4"
+                    value={address}
+                    placeholder="Enter address..."
+                    onChange={handleAddressChange}
+                    onInput ={handleAddressInput}
+                        />
+                {display && (
+                <div ref={wrapperRef} className="autoContainer">
+                {options.map((v, i) => {
+                return <div onClick={() => setItem(v)} className="option" key={i}>
+                            <div>{v}</div>
+                        </div>
+                        })}
+                        </div>
+
+                    )}
+
+            <SpecialButton>Sign up</SpecialButton>
           </ThemeProvider>
         </form>
-        <div id="expore">
-          <NavLink id ="navtoexplore" to="/">
-            <ExploreOutlinedIcon classes={{ root: classes.exploreIcon }}/>
-            <span id="trending">
-              Here's what's trending
-            </span>
-          </NavLink>
-        </div>
       </Container>
     </div>
   )

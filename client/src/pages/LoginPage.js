@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // import { login } from '../store/auth';
 // import { Redirect } from 'react-router-dom'
 import { Container } from '@material-ui/core';
-import GrooveLogo from '../components/auth/YumblrLogo';
+import GrooveLogo from '../components/GrooveLogo';
 import SpecialTextField from '../components/SpecialTextField';
 import './LandingPage.css';
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,7 +29,7 @@ const theme = createMuiTheme({
     },
     MuiButtonBase: {
       root: {
-        margin: "10px 0px 0px 10px",
+        margin: "10px 0px 0px 0px",
       },
     },
     MuiButton: {
@@ -48,7 +48,8 @@ function LoginPage() {
 //   const [password, setPassword] = useState('');
 //   const currentUserId = useSelector(state => state.auth.id);
 //   const dispatch = useDispatch();
-  const classes = useStyles();
+    const classes = useStyles();
+
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
@@ -66,7 +67,7 @@ function LoginPage() {
 //   if (currentUserId) return <Redirect to="/dashboard" />;
   return (
     <>
-      <div class="page-wrapper">
+      <div class="pagewrapper">
 
         <Container
           classes={{ root: classes.container }}
@@ -77,13 +78,13 @@ function LoginPage() {
             <ThemeProvider theme={theme}>
               <SpecialTextField id="textfield1"
                 placeholder="Email"
-                value={email}
+                // value={email}
                 // onChange={e => setEmail(e.target.value)}
               />
-              <SpecialTextField id="textfield2"
+              <SpecialTextField id="textfield22"
                 type="password"
                 placeholder="Password"
-                value={password}
+                // value={password}
                 // onChange={e => setPassword(e.target.value)}
                 />
               <SpecialButton>Log in</SpecialButton>

@@ -5,6 +5,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import SpecialButton from '../components/SpecialButton';
 import GrooveLogo from '../components/GrooveLogo.js'
+import { useHistory } from "react-router-dom";
 
 import './LandingPage.css'
 
@@ -50,6 +51,22 @@ function LandingPage(){
 
     const classes = useStyles();
 
+    const history = useHistory();
+
+
+
+    const loginclick = async (e) => {
+        e.preventDefault();
+        history.push("/login");
+    }
+
+    const signupclick = async (e) => {
+        e.preventDefault();
+        history.push("/signup");
+    }
+
+
+
     return (
         <>
         <div class="pagewrapper">
@@ -66,10 +83,10 @@ function LandingPage(){
                 </span>
                 <ThemeProvider theme={theme}>
                 <SpecialButton
-                    // onClick={signupclick}
+                    onClick={signupclick}
                     >Join us</SpecialButton>
                     <SpecialButton
-                    // onClick={loginclick}
+                    onClick={loginclick}
                     >Log in</SpecialButton>
                     </ThemeProvider>
             </Container>
