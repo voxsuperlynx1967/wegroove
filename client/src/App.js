@@ -5,7 +5,7 @@ import UserList from './components/UsersList';
 
 
 function App() {
-
+  console.log("____Rendering app_____")
   return (
     <BrowserRouter>
         <nav>

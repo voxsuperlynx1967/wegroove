@@ -15,6 +15,7 @@ function UsersList (props) {
     }, []);
 
     const userComponents = users.map((user) => <User key={user.id} user={user} />)
+    console.log("____Rendering User List____")
     return (
         <>
             <h1>User List: </h1>
