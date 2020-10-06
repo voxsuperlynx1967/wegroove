@@ -67,7 +67,7 @@ function LandingPage(){
                 <ThemeProvider theme={theme}>
                 <SpecialButton
                     // onClick={signupclick}
-                    >Get Started </SpecialButton>
+                    >Join us</SpecialButton>
                     <SpecialButton
                     // onClick={loginclick}
                     >Log in</SpecialButton>

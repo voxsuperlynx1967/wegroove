@@ -6,6 +6,7 @@ svg {
     background-image: url("../components/Beatles.jpg");
     background-position: center;
     background-attachment: fixed;
+    background-size: cover;
     height: 100vw;
     width: 100vw;
   }
@@ -20,7 +21,7 @@ svg {
    */
   .MuiContainer-root {
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
