@@ -12,13 +12,13 @@ svg {
   }
 
 
-  /* form {
+  form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%
   }
-   */
+
   .MuiContainer-root {
     position: fixed;
     top: 40%;
@@ -26,7 +26,7 @@ svg {
     transform: translate(-50%, -50%);
   }
 
-  /* #textfield1 {
+  #textfield1 {
     border-radius: 5px 5px 0px 0px;
   }
 
@@ -36,7 +36,7 @@ svg {
 
   #textfield3 {
     border-radius: 0px 0px 5px 5px;
-  } */
+  }
 
   #bigspan {
     display: flex;
