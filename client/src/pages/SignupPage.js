@@ -73,6 +73,7 @@ function SignupPage() {
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('')
     const wrapperRef = useRef(null);
+    const currentUser = useSelector(state => state.auth.id);
     const currentUserToken = useSelector(state => state.auth.auth_token);
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -133,7 +134,7 @@ function SignupPage() {
 
   }
 
-  if (currentUserToken) return <Redirect to="/" />;
+  if (currentUser || currentUserToken ) return <Redirect to="/user" />;
   return (
     <div class="pagewrapper">
       <Container

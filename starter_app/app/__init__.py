@@ -3,8 +3,10 @@ from flask import Flask, render_template, request, session
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
+from flask_login import LoginManager
 
-from .models import db, User
+from .models import db, Musician
 from .api.user_routes import user_routes
 
 from .config import Config
@@ -14,6 +16,8 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 db.init_app(app)
 Migrate(app, db)
+jwt = JWTManager(app)
+login = LoginManager(app)
 
 ## Application Security
 CORS(app)

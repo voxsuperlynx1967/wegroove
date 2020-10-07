@@ -46,6 +46,7 @@ const theme = createMuiTheme({
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const currentUser = useSelector(state => state.auth.id);
     const currentUserToken = useSelector(state => state.auth.auth_token);
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -61,7 +62,7 @@ function LoginPage() {
         dispatch(login("ian@aa.io", "password"));
     }
 
-    if (currentUserToken) return <Redirect to="/" />;
+    if (currentUser || currentUserToken) return <Redirect to="/user" />;
   return (
     <>
       <div class="pagewrapper">
