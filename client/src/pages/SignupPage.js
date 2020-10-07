@@ -1,24 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { signup } from '../store/auth';
 import { Container } from '@material-ui/core';
 import GrooveLogo from '../components/GrooveLogo';
 import SpecialButton from '../components/SpecialButton';
 import './LandingPage.css';
 import { makeStyles } from "@material-ui/core/styles";
 import SpecialTextField from '../components/SpecialTextField';
-// import { NavLink } from 'react-router-dom';
-// import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
-// import { useHistory } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { signup } from '../store/auth';
 
 
-// import { Redirect } from 'react-router-dom'
 
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-  } from 'react-places-autocomplete';
+import { Redirect } from 'react-router-dom'
 
 import Geocode from "react-geocode";
 
@@ -72,14 +65,25 @@ const theme = createMuiTheme({
 
 function SignupPage() {
     const [display, setDisplay] = useState(false);
+    const [address, setAddress] = useState("")
     const [options, setOptions] = useState([]);
-    const [address, setAddress] = useState("");
+    const [location, setLocation] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setfirstName] = useState('');
+    const [lastName, setlastName] = useState('')
     const wrapperRef = useRef(null);
+    const currentUserToken = useSelector(state => state.auth.auth_token);
+    const dispatch = useDispatch();
+    const classes = useStyles();
 
-    const setItem = item => {
+    const setItem = async item => {
 
         setAddress(item)
         setDisplay(false);
+        const response = await Geocode.fromAddress(item)
+        const { lat, lng } = await response.results[0].geometry.location;
+        setLocation(lat + "," + lng)
     }
     const handleAddressChange = (e) => {
 
@@ -121,32 +125,15 @@ function SignupPage() {
     }
 
 
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [username, setUsername] = useState('');
-//   const dispatch = useDispatch();
-    const classes = useStyles();
-    // https://maps.googleapis.com/maps/api/place/autocomplete/json?input=1600+Amphitheatre&key=AIzaSyDirIihZcTuaXMGGfCdU7dCD1DhtfsC-eA
 
-    // Geocode.fromAddress("99 Harris Ave, Needham, MA").then(
-    //     response => {
-    //     const { lat, lng } = response.results[0].geometry.location;
-    //     console.log(lat, lng);
-    //     },
-    //     error => {
-    //     console.error(error);
-    //     }
-    // );
-//   const history = useHistory();
-//   const currentUserId = useSelector(state => state.auth.id);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(location)
+    dispatch(signup( email, firstName, lastName, password, location ));
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     await dispatch(signup( email, password, username ));
-//     history.push("/dashboard");
-//   }
+  }
 
-//   if (currentUserId) return <Redirect to="/dashboard" />;
+  if (currentUserToken) return <Redirect to="/" />;
   return (
     <div class="pagewrapper">
       <Container
@@ -160,30 +147,34 @@ function SignupPage() {
           <span>Others just want good tone.
           </span>
         </span>
-        <form>
-          <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+        <form onSubmit={handleSubmit}>
+        <div className="errors-container">
+                      <ul className="errors" id="sign-up-errors"></ul>
+                    </div>
+
             <SpecialTextField id="textfield1"
               placeholder="Email"
-            //   value={email}
-            //   onChange={e => setEmail(e.target.value)}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
 
             <SpecialTextField id="textfield2"
               type="password"
               placeholder="Password"
-            //   value={password}
-            //   onChange={e => setPassword(e.target.value)}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               />
             <SpecialTextField id="textfield3"
               placeholder="First name"
-            //   value={username}
-            //   onChange={e => setUsername(e.target.value)}
+              value={firstName}
+              onChange={e => setfirstName(e.target.value)}
               />
 
             <SpecialTextField id="textfield4"
               placeholder="Last name"
-            //   value={username}
-            //   onChange={e => setUsername(e.target.value)}
+              value={lastName}
+              onChange={e => setlastName(e.target.value)}
               />
 
                 <SpecialTextField id="textfield4"
@@ -204,8 +195,9 @@ function SignupPage() {
                     )}
 
             <SpecialButton>Sign up</SpecialButton>
-          </ThemeProvider>
+
         </form>
+        </ThemeProvider>
       </Container>
     </div>
   )

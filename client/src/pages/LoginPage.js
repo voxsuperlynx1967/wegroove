@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { login } from '../store/auth';
-// import { Redirect } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../store/auth';
+import { Redirect } from 'react-router-dom'
 import { Container } from '@material-ui/core';
 import GrooveLogo from '../components/GrooveLogo';
 import SpecialTextField from '../components/SpecialTextField';
@@ -44,27 +44,24 @@ const theme = createMuiTheme({
 });
 
 function LoginPage() {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const currentUserId = useSelector(state => state.auth.id);
-//   const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const currentUserToken = useSelector(state => state.auth.auth_token);
+    const dispatch = useDispatch();
     const classes = useStyles();
 
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(login(email, password));
+     // history.push("/");
+    }
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     await dispatch(login(email, password));
-//     history.push("/dashboard");
-//   }
-//   const handleDemoSubmit = async (e) => {
-//     e.preventDefault();
-//     await dispatch(login("flavor@example.com", "password"));
-//     history.push("/dashboard");
-//   }
+    const handleDemoSubmit = (e) => {
+        e.preventDefault();
+        dispatch(login("ian@aa.io", "password"));
+    }
 
-
-
-//   if (currentUserId) return <Redirect to="/dashboard" />;
+    if (currentUserToken) return <Redirect to="/" />;
   return (
     <>
       <div class="pagewrapper">
@@ -74,21 +71,24 @@ function LoginPage() {
           fixed
           maxWidth="sm">
           <GrooveLogo id="groovelogo1"/>
-          <form>
+          <div className="errors-container">
+                      <ul className="errors" id="sign-up-errors"></ul>
+                    </div>
+          <form onSubmit={handleSubmit}>
             <ThemeProvider theme={theme}>
               <SpecialTextField id="textfield1"
                 placeholder="Email"
-                // value={email}
-                // onChange={e => setEmail(e.target.value)}
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
               <SpecialTextField id="textfield22"
                 type="password"
                 placeholder="Password"
-                // value={password}
-                // onChange={e => setPassword(e.target.value)}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 />
               <SpecialButton>Log in</SpecialButton>
-              <form>
+              <form onSubmit={handleDemoSubmit}>
                 <SpecialButton>Log in as demo user</SpecialButton>
               </form>
             </ThemeProvider>

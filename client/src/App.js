@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import Pages from './pages/Pages';
-import Pages from './pages/Pages';
 import { setUser } from './store/auth';
 import { useDispatch } from 'react-redux';
+import { CssBaseline } from '@material-ui/core';
 
 
 
@@ -14,10 +14,12 @@ function App() {
 
     useEffect(() => {
       const loadUser = async () => {
-        const res = await fetch("/api/session");
+        const res = await fetch("/api/users/session");
+        debugger
         if (res.ok) {
-          res.data = await res.json();
-          dispatch(setUser(res.data.user))
+          const data = await res.json();
+          debugger
+          dispatch(setUser(data.musician))
         }
         setLoading(false);
       }
@@ -26,9 +28,14 @@ function App() {
 
     if (loading) return null;
   return (
-    <BrowserRouter>
-        <Pages/>
-    </BrowserRouter>
+
+    <>
+      <CssBaseline>
+        <BrowserRouter>
+          <Pages />
+        </BrowserRouter>
+      </CssBaseline>
+    </>
   );
 }
 

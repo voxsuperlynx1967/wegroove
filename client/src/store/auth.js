@@ -4,10 +4,10 @@ const SET_USER = 'authentication/SET_USER';
 const REMOVE_USER = 'authentication/REMOVE_USER';
 
 
-export const setUser = (user) => {
+export const setUser = (musician) => {
     return {
         type: SET_USER,
-        user
+        musician
     }
 }
 
@@ -31,29 +31,27 @@ export const login = (email, password) => {
 
       });
 
-      res.data = await res.json();
+      const data = await res.json();
 
       // error handling
-      const { message } = res.data;
 
-      if (message){
-
-        console.log("this is the error message", message)
-        const errorsList = document.getElementById("errors");
-        if(errorsList) {
-          errorsList.innerHTML = '';
-        }
-
+      const { message } = data;
+      console.log("this is the error message", message)
+      const errorsList = document.getElementById("sign-up-errors");
+      errorsList.innerHTML = '';
+      if (message) {
         errorsList.style.display = "flex";
         const errorLi = document.createElement('li');
         errorLi.innerHTML = message;
         errorsList.appendChild(errorLi)
-      }
+      } else {
+        debugger
+        dispatch(setUser(data));
+        res.data = data;
 
-      if (res.ok) {
-        dispatch(setUser(res.data))
       }
       return res;
+
     }
   }
 
@@ -75,7 +73,7 @@ export const logout = () => {
 
 export const signup = (email, firstName, lastName, password, location) => {
     return async (dispatch) => {
-      const res = await fetch('api/users/signup', {
+      const res = await fetch('/api/users/signup', {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -83,9 +81,9 @@ export const signup = (email, firstName, lastName, password, location) => {
         },
         body: JSON.stringify({ email, firstName, lastName, password, location })
       });
+      debugger
       const data = await res.json();
-
-      //error handling
+      debugger
 
       const { message } = data;
       console.log("this is the error message", message)
@@ -96,11 +94,15 @@ export const signup = (email, firstName, lastName, password, location) => {
         const errorLi = document.createElement('li');
         errorLi.innerHTML = message;
         errorsList.appendChild(errorLi)
-      }
+      } else {
+        debugger
+        dispatch(setUser(data));
+        res.data = data;
 
-      dispatch(setUser(data));
-      res.data = data;
+      }
       return res;
+
+
     }
   }
 
@@ -108,7 +110,7 @@ export const signup = (email, firstName, lastName, password, location) => {
 export default function authReducer(state={}, action) {
     switch(action.type) {
       case SET_USER:
-        return action.user;
+        return action.musician;
       case REMOVE_USER:
         return {};
       default:

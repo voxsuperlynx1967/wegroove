@@ -1,4 +1,4 @@
-svg {
+#groovelogo1 {
     height: 150px;
     padding-bottom: 20px
   }
@@ -75,4 +75,24 @@ svg {
     font-family: "Helvetica Neue";
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
+ }
+
+
+ .errors-container {
+    display: flex;
+    justify-content: center;
+ }
+
+ .errors{
+     display: none;
+     width: 100%;
+     background-color: rgb(253, 183, 173);
+     border: 1px solid rgb(250, 96, 74);
+     border-color: rgb(250, 96, 74);
+     border-radius: 3px;
+     color: #333333;
+     margin: 16px 0;
+     padding: 12px;
+     text-align: center;
+     list-style-type: none;
  }
