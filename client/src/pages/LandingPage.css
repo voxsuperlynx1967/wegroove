@@ -1,5 +1,6 @@
-svg {
-    height: 500px;
+#groovelogo1 {
+    height: 150px;
+    padding-bottom: 20px
   }
 
   .pagewrapper {
@@ -12,13 +13,13 @@ svg {
   }
 
 
-  /* form {
+  form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%
   }
-   */
+
   .MuiContainer-root {
     position: fixed;
     top: 40%;
@@ -26,7 +27,7 @@ svg {
     transform: translate(-50%, -50%);
   }
 
-  /* #textfield1 {
+  #textfield1 {
     border-radius: 5px 5px 0px 0px;
   }
 
@@ -34,15 +35,23 @@ svg {
     border-radius: 0px 0px 0px 0px;
   }
 
-  #textfield3 {
+  #textfield22 {
     border-radius: 0px 0px 5px 5px;
-  } */
+  }
+
+  #textfield3 {
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  #textfield4 {
+    border-radius: 0px 0px 5px 5px;
+  }
 
   #bigspan {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px 0px 47px 0px;
+    padding: 0px 0px 20px 0px;
   }
   span {
    color: white;
@@ -51,3 +60,39 @@ svg {
    font-weight: bold;
    padding-bottom: 20px;
   }
+
+
+ .autoContainer {
+    width: 57%;
+    position: absolute;
+    top: 87%;
+    z-index: 1;
+    border-radius: 10px;
+ }
+
+ .option {
+    background-color: #f9f9f9;
+    font-family: "Helvetica Neue";
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+ }
+
+
+ .errors-container {
+    display: flex;
+    justify-content: center;
+ }
+
+ .errors{
+     display: none;
+     width: 100%;
+     background-color: rgb(253, 183, 173);
+     border: 1px solid rgb(250, 96, 74);
+     border-color: rgb(250, 96, 74);
+     border-radius: 3px;
+     color: #333333;
+     margin: 16px 0;
+     padding: 12px;
+     text-align: center;
+     list-style-type: none;
+ }
