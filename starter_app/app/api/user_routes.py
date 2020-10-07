@@ -74,9 +74,9 @@ def signup():
     lat = round(float(latlong[0]),0)
     lng = round(float(latlong[1]),0)
     if lat not in range(-90,90):
-        return jsonify(message="Please enter a valid location")
+        return jsonify(message="Please select a valid address from the dropdown")
     if lng not in range(-180,180):
-        return jsonify(message="Please enter a valid location")
+        return jsonify(message="Please enter a valid address from the dropdown")
 
     # if not musicianname:
     #     return jsonify(message="musicianname required"), 400
