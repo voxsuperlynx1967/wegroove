@@ -121,3 +121,13 @@ def load_musician():
     return {"musician": session['musician']}, 200
   else:
     return {"msg": "musician not loaded"}, 400
+
+@user_routes.route('/<qid>')
+def getspecific(qid):
+
+    musician = Musician.query.filter_by(id=qid).first()
+    musiciansdict = musician.to_dict()
+    # user = User.query.filter_by(id=question.userId).first()
+    # usersdict = user.to_dict()
+    # questionsdict["username"] = usersdict["username"]
+    return jsonify(musicianprof=musiciansdict), 200

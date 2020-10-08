@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a988d6fd.chunk.css",
+    "main.js": "/static/js/main.e0eaa177.chunk.js",
+    "main.js.map": "/static/js/main.e0eaa177.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.24078a69.chunk.js": "/static/js/2.24078a69.chunk.js",
+    "static/js/2.24078a69.chunk.js.map": "/static/js/2.24078a69.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ce27d6f96e7a890450796e2c09aff208.js": "/precache-manifest.ce27d6f96e7a890450796e2c09aff208.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.a988d6fd.chunk.css.map": "/static/css/main.a988d6fd.chunk.css.map",
+    "static/js/2.24078a69.chunk.js.LICENSE.txt": "/static/js/2.24078a69.chunk.js.LICENSE.txt",
+    "static/media/NavBar.css": "/static/media/Beatles.70cebe1f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.24078a69.chunk.js",
+    "static/css/main.a988d6fd.chunk.css",
+    "static/js/main.e0eaa177.chunk.js"
+  ]
+}
