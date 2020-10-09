@@ -1,0 +1,31 @@
+.qgrid1 {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+
+}
+
+.item1 {
+    width: 100%;
+}
+
+.item2 {
+    width: 100%;
+}
+
+.accorddiv {
+    position: absolute;
+    top: 25%;
+    width: 25%;
+}
+#titlecontainer1 {
+    display: flex;
+    justify-content: center;
+}
+#title1 {
+    position: absolute;
+    top: 15%;
+    font: 40px "Helvetica Neue";
+    font-weight: bold;
+    color: skyblue;
+}

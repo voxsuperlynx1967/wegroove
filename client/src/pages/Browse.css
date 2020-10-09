@@ -1,0 +1,17 @@
+.qgridusers {
+    position: absolute;
+    top: 25%;
+    left: 12%;
+}
+
+#titlecontainer {
+    display: flex;
+    justify-content: center;
+}
+#title {
+    position: absolute;
+    top: 15%;
+    font: 40px "Helvetica Neue";
+    font-weight: bold;
+    color: orange;
+}

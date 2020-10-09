@@ -10,6 +10,8 @@ import SignupPage from './SignupPage'
 
 import UserProfile from './UserProfile'
 
+import Browse from './Browse'
+
 
 export default function Pages() {
     return (
@@ -17,7 +19,9 @@ export default function Pages() {
         <Route exact path="/" component={LandingPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
-        <Route path ="/user" component={UserProfile}/>
+        <Route path ="/users/:id" component={UserProfile}/>
+        <Route path = "/browse/gear" component={Browse}/>
+
 
 
       </>

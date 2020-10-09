@@ -19,7 +19,7 @@ function App() {
         if (res.ok) {
           const data = await res.json();
           debugger
-          dispatch(setUser(data.musician))
+          dispatch(setUser(data))
         }
         setLoading(false);
       }
