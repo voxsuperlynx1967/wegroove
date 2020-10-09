@@ -1,0 +1,9 @@
+.info {
+    display:flex;
+    flex-direction: column;
+    background-image: linear-gradient(to bottom right, purple, blue, green, yellow, red)
+}
+
+.attributes {
+    padding: 40px;
+}

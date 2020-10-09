@@ -15,6 +15,9 @@ import CustomizedAccordions from '../components/Accordion'
 import { useParams } from "react-router-dom";
 
 import { fetchUser } from '../store/user'
+import { fetchGear } from '../store/gear'
+
+import './UserProfile.css'
 
 
 const theme = createMuiTheme({
@@ -55,20 +58,28 @@ export default function UserProfile() {
     useEffect(() => {
         dispatch(fetchUser(id));
       }, [dispatch, id]);
+      useEffect(() => {
+        dispatch(fetchGear(id));
+      }, [dispatch, id]);
     const profileUser = useSelector(state => state.user)
+    const profileGears = useSelector(state => state.gear)
+
     const currentUser = useSelector(state => state.auth.musician);
     const currentUserToken = useSelector(state => state.auth.auth_token);
     if (!currentUser && !currentUserToken) return <Redirect to="/"/>;
     return (
         <>
             <NavBar/>
+            <div id="titlecontainer1">
+                <div id="title1"> Hi {currentUser.firstName}! </div>
+            </div>
             <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid1">
                 <ThemeProvider theme={theme}>
                 <Grid item className="item1" key={profileUser.id}>
                     <UserView key={profileUser.id} musician={profileUser}/>
                 </Grid>
                 <Grid item className="item2">
-                    <UserAttributes/>
+                    <UserAttributes id={id}/>
                 </Grid>
                 </ThemeProvider>
 

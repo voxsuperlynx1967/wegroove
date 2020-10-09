@@ -20,8 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserAttributes() {
+export default function UserAttributes( id ) {
   const classes = useStyles();
+  console.log(id)
 
   return (
     <List className="listy">
@@ -66,7 +67,7 @@ export default function UserAttributes() {
         </ListItemAvatar>
         <ListItemText className="text" primary="Gear" secondary="Show off your gear" />
       </ListItem>
-      <Gallery/>
+      <Gallery id={id}/>
     </List>
   );
 }

@@ -2,10 +2,13 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import auth from './auth'
 import user from './user'
+import gear from './gear'
+
 
 const rootReducer = combineReducers({
     auth,
-    user
+    user,
+    gear
 });
 
 let storeEnhancer;

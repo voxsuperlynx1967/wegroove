@@ -9,6 +9,7 @@ import './LandingPage.css';
 import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import SpecialButton from '../components/SpecialButton'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   container: {
@@ -62,7 +63,7 @@ function LoginPage() {
         dispatch(login("ian@aa.io", "password"));
     }
 
-    if (currentUser || currentUserToken) return <Redirect to="/user" />;
+    if (currentUser || currentUserToken) return <Redirect to={`/users/${currentUser.id}`} />;
   return (
     <>
       <div class="pagewrapper">

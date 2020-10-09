@@ -4,7 +4,7 @@
   }
 
   .pagewrapper {
-    background-image: url("../components/Beatles.jpg");
+    background-image: linear-gradient(to bottom right, purple, blue, green, yellow, red);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;

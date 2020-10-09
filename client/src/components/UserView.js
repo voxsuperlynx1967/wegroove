@@ -10,20 +10,27 @@ import Typography from '@material-ui/core/Typography';
 import './UserView.css'
 
 import { useSelector } from 'react-redux';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 
 
-export default function UserView({ musician }) {
+export default function UserView({ musician, gear }) {
+  console.log(musician.mediaLink)
+  console.log(gear)
+
 
   const currentUser = useSelector(state => state.auth.musician);
-
   const button = () => {
       if (currentUser.id === musician.id) {
         return (
-            <SpecialButton className="buttons" color="primary">
-                 Edit profile
-            </SpecialButton>
+            <div className="editprof">
+              <EditIcon>
+                Edit profile
+              </EditIcon>
+
+            </div>
+
         )
       } else {
         return (
@@ -46,7 +53,7 @@ export default function UserView({ musician }) {
           component="img"
           alt="Musician"
           height="100%"
-          image="https://static-cdn.123rf.com/stock-audio/images/feb2017/audio_banner_jazz_3.jpg"
+          image={musician.mediaLink}
           title="Musician"
         ></CardMedia>
         <CardContent>
@@ -54,7 +61,7 @@ export default function UserView({ musician }) {
             {musician.firstName}{" "}{musician.lastName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {musician.bio ? musician.firstName:musician.firstName + " has not added a bio yet! That's not very groovy..."}
+            {musician.bio}
           </Typography>
         </CardContent>
       </CardActionArea>
