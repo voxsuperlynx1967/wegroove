@@ -21,7 +21,9 @@ class Musician(db.Model):
       "firstName": self.firstName,
       "lastName": self.lastName,
       "location": self.location,
+      "bio": self.bio,
       "email": self.email,
+      "mediaLink": self.mediaLink
     }
 
 class GearType(db.Model):
