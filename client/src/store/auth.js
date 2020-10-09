@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 
 const SET_USER = 'authentication/SET_USER';
 const REMOVE_USER = 'authentication/REMOVE_USER';
+const GET_USER = 'authentication/GET_USER';
 
 
 export const setUser = (musician) => {
@@ -16,6 +17,8 @@ export const removeUser = () => {
         type: REMOVE_USER
     }
 }
+
+
 
 
 export const login = (email, password) => {

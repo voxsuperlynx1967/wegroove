@@ -1,0 +1,10 @@
+.headerdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font: 30px "Helvetica Neue";
+    font-weight: bold;
+    color: hotpink;
+    background-image: linear-gradient(to bottom right, purple, blue, green, yellow, red)
+}

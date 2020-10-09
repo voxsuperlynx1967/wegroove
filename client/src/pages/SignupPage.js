@@ -73,7 +73,7 @@ function SignupPage() {
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('')
     const wrapperRef = useRef(null);
-    const currentUser = useSelector(state => state.auth.id);
+    const currentUser = useSelector(state => state.auth.musician);
     const currentUserToken = useSelector(state => state.auth.auth_token);
     const dispatch = useDispatch();
     const classes = useStyles();
