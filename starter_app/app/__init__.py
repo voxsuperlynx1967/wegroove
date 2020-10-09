@@ -6,14 +6,16 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_login import LoginManager
 
-from .models import db, Musician
+from .models import db, Musician, Gear, GearAttribute, GearType, GearTypeTag, Tag
 from .api.user_routes import user_routes
+from .api.gear_routes import gear_routes
 
 from .config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(gear_routes, url_prefix='/api/gear')
 db.init_app(app)
 Migrate(app, db)
 jwt = JWTManager(app)
