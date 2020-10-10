@@ -67,16 +67,20 @@ function SignupPage() {
     const [display, setDisplay] = useState(false);
     const [address, setAddress] = useState("")
     const [options, setOptions] = useState([]);
-    const [location, setLocation] = useState("");
+    const [longitude, setLongitude] = useState(200);
+    const [latitude, setLatitude] = useState(200)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('')
+    const [mediaLink, setMediaLink] = useState('https://thumbs.dreamstime.com/b/double-bass-player-cartoon-character-professional-musician-playing-string-acoustic-instrument-improvisation-classical-music-161154771.jpg')
     const wrapperRef = useRef(null);
     const currentUser = useSelector(state => state.auth.musician);
     const currentUserToken = useSelector(state => state.auth.auth_token);
     const dispatch = useDispatch();
     const classes = useStyles();
+
+
 
     const setItem = async item => {
 
@@ -84,7 +88,8 @@ function SignupPage() {
         setDisplay(false);
         const response = await Geocode.fromAddress(item)
         const { lat, lng } = await response.results[0].geometry.location;
-        setLocation(lat + "," + lng)
+        setLatitude(lat)
+        setLongitude(lng)
     }
     const handleAddressChange = (e) => {
 
@@ -129,8 +134,7 @@ function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(location)
-    dispatch(signup( email, firstName, lastName, password, location ));
+    dispatch(signup( email, firstName, lastName, password, longitude, latitude, mediaLink ));
 
   }
 

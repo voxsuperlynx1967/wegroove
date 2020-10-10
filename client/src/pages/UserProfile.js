@@ -57,12 +57,14 @@ export default function UserProfile() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchUser(id));
+        debugger
       }, [dispatch, id]);
       useEffect(() => {
         dispatch(fetchGear(id));
       }, [dispatch, id]);
     const profileUser = useSelector(state => state.user)
     const profileGears = useSelector(state => state.gear)
+    console.log(profileUser)
 
     const currentUser = useSelector(state => state.auth.musician);
     const currentUserToken = useSelector(state => state.auth.auth_token);

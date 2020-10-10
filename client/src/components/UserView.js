@@ -15,9 +15,9 @@ import EditIcon from '@material-ui/icons/Edit';
 
 
 
-export default function UserView({ musician, gear }) {
+export default function UserView({ musician }) {
   console.log(musician.mediaLink)
-  console.log(gear)
+  console.log(musician.firstName)
 
 
   const currentUser = useSelector(state => state.auth.musician);

@@ -2,12 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import NavBar from '../components/NavBar'
 import UserPanel from '../components/UserPanel'
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Grid } from '@material-ui/core';
 
 import './Browse.css'
 
 export default function Browse() {
+    const currentUser = useSelector(state => state.auth.musician);
+    const lat = currentUser.latitude
+    const lng = currentUser.longitude
+    console.log(lat)
+    console.log(lng)
 
     const theme = createMuiTheme({
         overrides: {

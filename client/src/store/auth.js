@@ -74,7 +74,7 @@ export const logout = () => {
 };
 
 
-export const signup = (email, firstName, lastName, password, location) => {
+export const signup = (email, firstName, lastName, password, longitude, latitude, mediaLink) => {
     return async (dispatch) => {
       const res = await fetch('/api/users/signup', {
         method: "post",
@@ -82,7 +82,7 @@ export const signup = (email, firstName, lastName, password, location) => {
           "Content-Type": "application/json",
           "XSRF-TOKEN": Cookies.get("XSRF-TOKEN")
         },
-        body: JSON.stringify({ email, firstName, lastName, password, location })
+        body: JSON.stringify({ email, firstName, lastName, password, longitude, latitude, mediaLink })
       });
       debugger
       const data = await res.json();
