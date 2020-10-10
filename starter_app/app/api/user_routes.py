@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request, session
-from app.models import Musician, db
+from app.models import Musician, db, Gear, GearAttribute
 from flask_jwt_extended import JWTManager, create_access_token
 import bcrypt
+import math
+from sqlalchemy import func
 
 user_routes = Blueprint('users', __name__)
 
@@ -64,18 +66,17 @@ def signup():
     lastName = data['lastName']
     email = data['email']
     hashed_password = set_password(data['password'])
-    location = data['location']
+    longitude = data['longitude']
+    latitude = data['latitude']
+    mediaLink = data['mediaLink']
 
-    if not firstName or not email or not hashed_password or not location:
-        return jsonify(message="First name, email, location, and password required"), 400
+    if not firstName or not email or not hashed_password or not latitude or not longitude:
+        return jsonify(message="First name, email, address, and password required"), 400
 
-    latlong = location.split(",")
-    print(latlong)
-    lat = round(float(latlong[0]),0)
-    lng = round(float(latlong[1]),0)
-    if lat not in range(-90,90):
+
+    if round(latitude, 0) not in range(-90,90):
         return jsonify(message="Please select a valid address from the dropdown")
-    if lng not in range(-180,180):
+    if round(longitude, 0) not in range(-180,180):
         return jsonify(message="Please enter a valid address from the dropdown")
 
     # if not musicianname:
@@ -90,8 +91,10 @@ def signup():
         email=email,
         firstName=firstName,
         lastName=lastName,
-        location=location,
+        longitude=longitude,
+        latitude=latitude,
         hashed_password=hashed_password,
+        mediaLink=mediaLink
     )
     db.session.add(musician)
     db.session.commit()
@@ -126,8 +129,30 @@ def load_musician():
 def getspecific(qid):
 
     musician = Musician.query.filter_by(id=qid).first()
+    print(musician)
     musiciansdict = musician.to_dict()
     # user = User.query.filter_by(id=question.userId).first()
     # usersdict = user.to_dict()
     # questionsdict["username"] = usersdict["username"]
     return jsonify(musicianprof=musiciansdict), 200
+
+@user_routes.route('/nearby')
+def nearbyusers(my_latitude, my_longitude):
+    def calc_distance(latlong1, latlong2):
+        return func.sqrt(func.pow(69.1 * (latlong1[0] - latlong2[0]),2)
+                    + func.pow(53.0 * (latlong1[1] - latlong2[1]),2))
+    response=Musician.query.filter(calc_distance((Musician.latitude, Musician.longitude), (my_latitude, my_longitude)) < 10).all()
+    musicianList = [musician.to_dict() for musician in response]
+    for musician in musicianList:
+        gears = Gear.query.filter_by(musicianId=musician["id"]).all()
+        gearList = [gear.to_dict() for gear in gears]
+        for gear in gearList:
+            attributeList = GearAttribute.query.filter_by(gearId=gear["id"]).all()
+            attributedict = [attribute.to_dict() for attribute in attributeList]
+            gear["attributes"] = attributedict
+        musician["gear"] = gearList
+    return {"nearbyMusicians": musicianList}
+
+
+
+    # + (69.1*(-77.41605369999999 - Musician.longitude) * math.cos(Musician.latitude / 57.3)) ** 2)
