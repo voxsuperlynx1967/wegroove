@@ -1,8 +1,8 @@
-"""create users and gear tables
+"""again users and gear
 
-Revision ID: 7bff32e2dd4c
+Revision ID: 30d294539439
 Revises: 
-Create Date: 2020-10-08 23:40:41.876431
+Create Date: 2020-10-09 17:00:05.605802
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7bff32e2dd4c'
+revision = '30d294539439'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,7 +27,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('firstName', sa.String(length=40), nullable=False),
     sa.Column('lastName', sa.String(length=40), nullable=True),
-    sa.Column('location', sa.String(length=500), nullable=False),
+    sa.Column('longitude', sa.Float(), nullable=False),
+    sa.Column('latitude', sa.Float(), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('bio', sa.String(length=2000), nullable=True),
     sa.Column('mediaLink', sa.String(length=2000), nullable=True),

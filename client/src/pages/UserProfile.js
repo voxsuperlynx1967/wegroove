@@ -39,14 +39,16 @@ const theme = createMuiTheme({
       MuiButton: {
         label: {
           textTransform: "none",
-          font: "15px Helvetica Neue",
+          fontSize: "15px",
+          fontFamily: "'Fredoka One', cursive",
           fontWeight: "bold",
           padding: "10px"
         }
       },
       MuiGrid: {
         container: {
-            width: "50%"
+            width: "50%",
+            borderRadius: "5px",
         }
     },
     },
@@ -57,12 +59,15 @@ export default function UserProfile() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchUser(id));
+        debugger
       }, [dispatch, id]);
       useEffect(() => {
         dispatch(fetchGear(id));
       }, [dispatch, id]);
     const profileUser = useSelector(state => state.user)
     const profileGears = useSelector(state => state.gear)
+    console.log(profileUser)
+    debugger
 
     const currentUser = useSelector(state => state.auth.musician);
     const currentUserToken = useSelector(state => state.auth.auth_token);
@@ -70,9 +75,7 @@ export default function UserProfile() {
     return (
         <>
             <NavBar/>
-            <div id="titlecontainer1">
-                <div id="title1"> Hi {currentUser.firstName}! </div>
-            </div>
+            <div className="banner"> Get your groove on.</div>
             <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid1">
                 <ThemeProvider theme={theme}>
                 <Grid item className="item1" key={profileUser.id}>
@@ -85,7 +88,7 @@ export default function UserProfile() {
 
             </Grid>
             <div className="accorddiv">
-                <CustomizedAccordions/>
+                <CustomizedAccordions user={currentUser}/>
             </div>
         </>
     )

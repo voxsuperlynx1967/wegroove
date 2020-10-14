@@ -6,19 +6,18 @@ import './Gallery.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGear } from '../store/gear'
 import { List } from '@material-ui/core';
-import './Gallery.css'
+import './UserPanelGallery.css'
 
 
-export default function Gallery( id ) {
-    console.log(id)
-    const dispatch = useDispatch()
+export default function UserPanelGallery( user ) {
+    // console.log(id)
+    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(fetchGear(id));
-      }, [dispatch, id]);
+    // useEffect(() => {
+    //     dispatch(fetchGear(id));
+    //   }, [dispatch, id]);
 
-    const profileGears = useSelector(state => state.gear)
-    console.log(profileGears)
+    const profileGears = user.user.gear
 
     const attributes =  (profileGear) => {
         let list2 = []

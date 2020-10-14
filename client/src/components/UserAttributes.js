@@ -13,6 +13,9 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import './UserAttributes.css'
 import Roles from './Roles.js'
 import Gallery from './Gallery'
+import SpecialButton from '../components/SpecialButton'
+import EditIcon from '@material-ui/icons/Edit';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,28 +25,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserAttributes( id ) {
   const classes = useStyles();
-  console.log(id)
+
+
+  const currentUser = useSelector(state => state.auth.musician);
+  console.log(id.id)
+  console.log(currentUser.id)
+  const edit = () => {
+    if (currentUser.id === parseInt(id.id)) {
+        return (
+            <EditIcon className="edit"/>
+        )
+    }
+  }
 
   return (
     <List className="listy">
-      <ListItem className="one">
+      {/* <ListItem className="one">
         <ListItemAvatar>
           <Avatar>
             <WorkIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText className="text" primary="Skills" secondary="What can you do?" />
-      </ListItem>
-      <Roles/>
+        <ListItemText className="text" primary="Influences" secondary="Who influences you?" />
+      </ListItem>*/}
       <ListItem className="two">
         <ListItemAvatar>
           <Avatar>
             <LibraryMusicIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText className="text" primary="Influences" secondary="Who influences you?" />
+        <ListItemText className="text" primary="Skills" secondary="What can you do?" />
       </ListItem>
-      <ListItem className="three">
+      {/* <Roles/> */}
+      {/* <ListItem className="three">
         <ListItemAvatar>
           <Avatar>
             <HomeWorkIcon />
@@ -58,7 +72,7 @@ export default function UserAttributes( id ) {
           </Avatar>
         </ListItemAvatar>
         <ListItemText className="text" primary="Projects" secondary="Show off your work" />
-      </ListItem>
+      </ListItem> */}
       <ListItem className="five">
         <ListItemAvatar>
           <Avatar>
@@ -66,6 +80,7 @@ export default function UserAttributes( id ) {
           </Avatar>
         </ListItemAvatar>
         <ListItemText className="text" primary="Gear" secondary="Show off your gear" />
+        {edit()}
       </ListItem>
       <Gallery id={id}/>
     </List>

@@ -48,7 +48,7 @@ export const login = (email, password) => {
         errorLi.innerHTML = message;
         errorsList.appendChild(errorLi)
       } else {
-        debugger
+
         dispatch(setUser(data));
         res.data = data;
 
@@ -74,7 +74,7 @@ export const logout = () => {
 };
 
 
-export const signup = (email, firstName, lastName, password, location) => {
+export const signup = (email, firstName, lastName, password, longitude, latitude, mediaLink) => {
     return async (dispatch) => {
       const res = await fetch('/api/users/signup', {
         method: "post",
@@ -82,11 +82,11 @@ export const signup = (email, firstName, lastName, password, location) => {
           "Content-Type": "application/json",
           "XSRF-TOKEN": Cookies.get("XSRF-TOKEN")
         },
-        body: JSON.stringify({ email, firstName, lastName, password, location })
+        body: JSON.stringify({ email, firstName, lastName, password, longitude, latitude, mediaLink })
       });
-      debugger
+
       const data = await res.json();
-      debugger
+
 
       const { message } = data;
       console.log("this is the error message", message)
@@ -98,7 +98,7 @@ export const signup = (email, firstName, lastName, password, location) => {
         errorLi.innerHTML = message;
         errorsList.appendChild(errorLi)
       } else {
-        debugger
+
         dispatch(setUser(data));
         res.data = data;
 

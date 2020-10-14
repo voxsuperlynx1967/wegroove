@@ -8,15 +8,16 @@ import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
+import { lightGreen } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import './UserPanel.css'
-import Gallery from './Gallery'
+import UserPanelGallery from './UserPanelGallery'
+import { useHistory, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   fun: {
-    backgroundImage: "linear-gradient(to bottom right, purple, blue, green, yellow, red)",
+    background: '#00B8FF',
   },
   root: {
     maxWidth: 345,
@@ -27,31 +28,32 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "20%"
   },
   avatar: {
-    backgroundColor: red[500]
+    backgroundColor: lightGreen[500]
   }
 }));
 
-export default function UserPanel() {
+export default function UserPanel( user ) {
+  const history = useHistory();
   const classes = useStyles();
+  const usercard = user.user
   return (
     <Card className={classes.root}>
       <div className="headerdiv">
+          <NavLink className="nope" to={`/users/${usercard.id}`}>
           <Avatar aria-label="recipe" className={classes.avatar}>
-            SC
+            {usercard.firstName[0]}{usercard.lastName[0]}
+
           </Avatar>
+          </NavLink>
+          {usercard.firstName}'s Board
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
 
 
         </div>
-      <Gallery/>
+      <UserPanelGallery user={usercard}/>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
       </CardContent>
       <CardActions className = {classes.fun} disableSpacing>
         <IconButton aria-label="add to favorites">

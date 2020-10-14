@@ -8,7 +8,8 @@ class Musician(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   firstName = db.Column(db.String(40), nullable = False)
   lastName = db.Column(db.String(40))
-  location = db.Column(db.String(500), nullable=False)
+  longitude = db.Column(db.Float, nullable=False)
+  latitude = db.Column(db.Float, nullable=False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   bio = db.Column(db.String(2000))
   mediaLink = db.Column(db.String(2000))
@@ -20,7 +21,8 @@ class Musician(db.Model):
       "id": self.id,
       "firstName": self.firstName,
       "lastName": self.lastName,
-      "location": self.location,
+      "longitude": self.longitude,
+      "latitude": self.latitude,
       "bio": self.bio,
       "email": self.email,
       "mediaLink": self.mediaLink
@@ -69,6 +71,7 @@ class Tag(db.Model):
   def to_dict(self):
     return {
       "id": self.id,
+      "name": self.name,
       "type": self.type,
       "is_required": self.is_required
     }

@@ -4,19 +4,47 @@
 }
 
 .two {
-    background-color: yellowgreen;
+    background-color: #00B8FF;
 
 }
 
 .three {
-    background-color: skyblue;
+    background-color: orange;
 
 }
 .four {
-    background-color: violet;
+    background-color: #00B8FF;
 
 }
 .five {
-    background-color: blueviolet;
+    background-color: orange;
 
+}
+
+.MuiTypography-root.MuiListItemText-primary.MuiTypography-body1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    font-weight:bold;
+    color: white;
+    padding: 2%;
+}
+
+.MuiTypography-root.MuiListItemText-secondary.MuiTypography-body2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 16px;
+    color: white;
+    padding: 2%;
+}
+
+.MuiCardMedia-root.MuiCardMedia-media.MuiCardMedia-img {
+    height: 350px;
+}
+
+.listy {
+    border-radius: 5px;
+}
+
+.MuiSvgIcon-root.edit {
+    fill: white;
+    cursor: pointer;
 }

@@ -23,3 +23,20 @@ def getspecific(mid):
     # usersdict = user.to_dict()
     # questionsdict["username"] = usersdict["username"]
     return {"musiciansGear": gearList}
+
+@gear_routes.route('/types')
+def alltypes():
+    response = GearType.query.all()
+    geartype = [gear.to_dict() for gear in response]
+    return {"gearTypes": geartype}
+
+@gear_routes.route('/typetags')
+def alltypetags():
+    response = GearTypeTag.query.all()
+    geartypetags = [gear.to_dict() for gear in response]
+    for geartypetag in geartypetags:
+        tag = Tag.query.filter_by(id=geartypetag["tagId"]).first()
+        tag1 = tag.to_dict()
+        geartypetag["tagName"] = tag1["name"]
+        geartypetag["tagType"] = tag1["type"]
+    return {"gearTypeTags": geartypetags}

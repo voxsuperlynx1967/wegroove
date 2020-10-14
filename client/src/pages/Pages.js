@@ -12,18 +12,20 @@ import UserProfile from './UserProfile'
 
 import Browse from './Browse'
 
+import GearForm from './GearForm'
+
+
 
 export default function Pages() {
+
     return (
       <>
         <Route exact path="/" component={LandingPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignupPage} />
         <Route path ="/users/:id" component={UserProfile}/>
-        <Route path = "/browse/gear" component={Browse}/>
-
-
-
+        <Route path = "/browse/gear/all" component={Browse}/>
+        <Route path ="/gear/new" component={GearForm}/>
       </>
     );
   }

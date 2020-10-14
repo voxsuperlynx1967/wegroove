@@ -3,12 +3,16 @@ import thunk from 'redux-thunk';
 import auth from './auth'
 import user from './user'
 import gear from './gear'
+import nearby from './nearby'
+import tags from './tags'
 
 
 const rootReducer = combineReducers({
     auth,
     user,
-    gear
+    gear,
+    nearby,
+    tags
 });
 
 let storeEnhancer;

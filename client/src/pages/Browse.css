@@ -2,6 +2,7 @@
     position: absolute;
     top: 25%;
     left: 12%;
+    right: 12%;
 }
 
 #titlecontainer {
@@ -14,4 +15,17 @@
     font: 40px "Helvetica Neue";
     font-weight: bold;
     color: orange;
+}
+
+.banner {
+    display: flex;
+    font-weight: bolder;
+    font-size: 36px;
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-image: url(https://i.pinimg.com/originals/9f/b8/44/9fb844ad03fdde1530eaf7dba5bba5f7.gif);
+    background-size: cover;
 }
