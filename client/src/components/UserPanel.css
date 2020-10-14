@@ -3,8 +3,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    font: 30px "Helvetica Neue";
-    font-weight: bold;
-    color: hotpink;
-    background-image: linear-gradient(to bottom right, purple, blue, green, yellow, red)
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px;
+    color: white;
+    background-color: #00B8FF;
+}
+
+.nope {
+    text-decoration: none;
 }

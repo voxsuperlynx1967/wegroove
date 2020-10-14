@@ -2,6 +2,7 @@
     position: absolute;
     top: 25%;
     left: 25%;
+    border-radius: 5px;
 
 }
 
@@ -28,4 +29,17 @@
     font: 40px "Helvetica Neue";
     font-weight: bold;
     color: skyblue;
+}
+
+.banner {
+    display: flex;
+    font-weight: bolder;
+    font-size: 36px;
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-image: url(https://64.media.tumblr.com/2f18d4e8bc54423b1e9a70cbc8de088f/tumblr_pl8i7cuNKu1uawsh4_1280.jpg);
+    background-size: cover;
 }

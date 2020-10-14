@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar'
 import UserPanel from '../components/UserPanel'
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsersNearby } from '../store/nearby';
 
 import { Grid } from '@material-ui/core';
 
@@ -12,8 +13,29 @@ export default function Browse() {
     const currentUser = useSelector(state => state.auth.musician);
     const lat = currentUser.latitude
     const lng = currentUser.longitude
-    console.log(lat)
-    console.log(lng)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchUsersNearby(lat, lng));
+        debugger
+      }, [dispatch]);
+
+    const userList = useSelector(state => state.nearby);
+    debugger
+
+    const panels = ( userList ) => {
+        const list1 = []
+        debugger
+        for (let i=0; i < userList.length; i++) {
+            list1.push(
+                <Grid item>
+                        <UserPanel user={userList[i]}/>
+                </Grid>
+            )
+        }
+        return list1
+    }
+
+
 
     const theme = createMuiTheme({
         overrides: {
@@ -45,29 +67,10 @@ export default function Browse() {
     return (
         <>
             <NavBar/>
-            <div id="titlecontainer">
-                <div id="title"> Musicians in Your Area </div>
-            </div>
+            <div className="banner"> Meet musicians in your area</div>
             <ThemeProvider theme={theme}>
                 <Grid container align="center" direction="row" spacing={4} alignItems="stretch" className="qgridusers">
-                    <Grid item>
-                        <UserPanel/>
-                    </Grid>
-                    <Grid item>
-                        <UserPanel/>
-                    </Grid>
-                    <Grid item>
-                        <UserPanel/>
-                    </Grid>
-                    <Grid item>
-                        <UserPanel/>
-                    </Grid>
-                    <Grid item>
-                        <UserPanel/>
-                    </Grid>
-                    <Grid item>
-                        <UserPanel/>
-                    </Grid>
+                    {panels(userList)}
                 </Grid>
             </ThemeProvider>
 

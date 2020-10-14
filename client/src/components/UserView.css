@@ -2,3 +2,28 @@
     display: flex;
     justify-content: center;
 }
+
+.MuiTypography-root.musicianname {
+    font-weight: bold;
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px;
+    color: white;
+    padding: 5%;
+    background-color: orange;
+    border-radius: 5px
+}
+/* .MuiCardContent-root {
+    background-color: #00B8FF;
+} */
+
+
+.MuiTypography-root.musicianbio {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+    color: black;
+    padding: 7%;
+}
+
+.MuiSvgIcon-root.edit {
+    fill: #00B8FF;
+}

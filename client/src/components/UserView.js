@@ -25,7 +25,7 @@ export default function UserView({ musician }) {
       if (currentUser.id === musician.id) {
         return (
             <div className="editprof">
-              <EditIcon>
+              <EditIcon className="edit">
                 Edit profile
               </EditIcon>
 
@@ -57,10 +57,10 @@ export default function UserView({ musician }) {
           title="Musician"
         ></CardMedia>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography className="musicianname">
             {musician.firstName}{" "}{musician.lastName}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography className="musicianbio">
             {musician.bio}
           </Typography>
         </CardContent>

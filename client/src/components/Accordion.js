@@ -6,6 +6,7 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import SpecialButton from './SpecialButton';
 import { useHistory } from 'react-router-dom';
+import './Accordion.css'
 
 
 const Accordion = withStyles({
@@ -67,7 +68,7 @@ export default function CustomizedAccordions() {
     <div>
       <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Browse Gear</Typography>
+          <Typography className="cust">Browse Gear</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <SpecialButton onClick={browseall}> Browse all</SpecialButton>
@@ -76,22 +77,22 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Browse Users</Typography>
+          <Typography className="cust">Browse Users</Typography>
         </AccordionSummary>
         <AccordionDetails>
             <SpecialButton> Browse all </SpecialButton>
             <SpecialButton> Browse by</SpecialButton>
         </AccordionDetails>
       </Accordion>
-      <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+      {/* <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Browse Projects</Typography>
+          <Typography className="cust">Browse Projects</Typography>
         </AccordionSummary>
         <AccordionDetails>
             <SpecialButton> Browse all </SpecialButton>
             <SpecialButton> Browse by</SpecialButton>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
     </div>
   );
 }

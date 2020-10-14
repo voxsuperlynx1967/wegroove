@@ -73,6 +73,7 @@ export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -89,6 +90,7 @@ export default function PrimarySearchAppBar() {
   const handleLogout = () => {
     setAnchorEl(null);
     dispatch(logout());
+    history.push("/")
 
   }
 

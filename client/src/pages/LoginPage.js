@@ -60,7 +60,7 @@ function LoginPage() {
 
     const handleDemoSubmit = (e) => {
         e.preventDefault();
-        dispatch(login("ian@aa.io", "password"));
+        dispatch(login("javier@aa.io", "password"));
     }
 
     if (currentUser || currentUserToken) return <Redirect to={`/users/${currentUser.id}`} />;

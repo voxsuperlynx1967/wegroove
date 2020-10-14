@@ -1,0 +1,11 @@
+.MuiTypography-root.MuiTypography-body1.cust {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    font-weight:bold;
+    color: white;
+    padding: 2%;
+}
+
+.MuiButtonBase-root.MuiAccordionSummary-root {
+    background-color: #00B8FF;
+}

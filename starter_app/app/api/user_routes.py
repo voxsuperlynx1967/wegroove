@@ -136,13 +136,22 @@ def getspecific(qid):
     # questionsdict["username"] = usersdict["username"]
     return jsonify(musicianprof=musiciansdict), 200
 
-@user_routes.route('/nearby')
-def nearbyusers(my_latitude, my_longitude):
+@user_routes.route('/nearby', methods=["PUT"])
+def nearbyusers():
+    data = request.get_json()
+    print(data)
+    print(data)
+    print(data)
+    my_latitude = data["latitude"]
+    my_longitude = data["longitude"]
+    print(isinstance(my_latitude, float))
     def calc_distance(latlong1, latlong2):
         return func.sqrt(func.pow(69.1 * (latlong1[0] - latlong2[0]),2)
                     + func.pow(53.0 * (latlong1[1] - latlong2[1]),2))
     response=Musician.query.filter(calc_distance((Musician.latitude, Musician.longitude), (my_latitude, my_longitude)) < 10).all()
+    print(response, "hi")
     musicianList = [musician.to_dict() for musician in response]
+    print(musicianList)
     for musician in musicianList:
         gears = Gear.query.filter_by(musicianId=musician["id"]).all()
         gearList = [gear.to_dict() for gear in gears]

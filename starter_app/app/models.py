@@ -71,6 +71,7 @@ class Tag(db.Model):
   def to_dict(self):
     return {
       "id": self.id,
+      "name": self.name,
       "type": self.type,
       "is_required": self.is_required
     }

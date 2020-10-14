@@ -6,7 +6,8 @@
     font-size: 30px;
     padding: 30px;
     border-radius: 5px;
-    height: 100%;
+    height: 50vh;
+    overflow-y: scroll;
 }
 
 .gearname {
@@ -42,8 +43,4 @@ p.carousel-status {
 
 .carousel .slide {
     background-color: orange;
-}
-
-.attcontainer {
-    height: 300px;
 }
