@@ -5,6 +5,7 @@ import user from './user'
 import gear from './gear'
 import nearby from './nearby'
 import tags from './tags'
+import attribute from './attribute'
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     user,
     gear,
     nearby,
-    tags
+    tags,
+    attribute
 });
 
 let storeEnhancer;
