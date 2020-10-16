@@ -61,3 +61,23 @@ def newgear():
     db.session.commit()
     gear1 = gear.to_dict()
     return jsonify(gear=gear1), 200
+
+@gear_routes.route('/attribute/new', methods=["POST"])
+def newattribute():
+    data = request.get_json()
+    # try:
+    gearId = data['gearId']
+    tag = data['tag']
+    value = data['value']
+
+    if not gearId or not tag or not value:
+      return jsonify(message="Tag and value are required!"), 400
+    attribute = GearAttribute(
+        gearId=gearId,
+        tag=tag,
+        value=value
+      )
+    db.session.add(attribute)
+    db.session.commit()
+    attribute1 = attribute.to_dict()
+    return jsonify(attribute=attribute1), 200
