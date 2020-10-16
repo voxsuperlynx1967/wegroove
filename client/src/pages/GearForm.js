@@ -13,6 +13,7 @@ import NavBar from '../components/NavBar'
 import { Select } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
 import { InputLabel } from '@material-ui/core';
+import { postGear } from '../store/gear';
 
 
 const useStyles = makeStyles({
@@ -76,7 +77,7 @@ export default function GearForm() {
 
 
 
-    const gearTypes = useSelector(state => state.gear);
+    const gear = useSelector(state => state.gear);
     const gearTags = useSelector(state => state.tags);
     debugger
     // const gearTypeTags = useSelector(state => state.gear.gearTypeTags)
@@ -107,6 +108,7 @@ export default function GearForm() {
     const handleSubmit1 = (event) => {
         event.preventDefault()
         document.getElementById("firstform").classList.add("hidden");
+        dispatch(postGear(name, gearTypeId, musicianId, mediaLink))
         document.getElementById("secondh").innerHTML = "Let's get more specific";
         const sform = document.getElementById("secondform")
         sform.classList.remove("hidden")
@@ -117,11 +119,11 @@ export default function GearForm() {
 
 
 
-    const options = (gearTypes) => {
+    const options = (gear) => {
         let list2 = []
-        for (let i=0; i < gearTypes.length ; i++) {
+        for (let i=0; i < gear.length ; i++) {
             list2.push(
-                <MenuItem value={gearTypes[i].id}>{gearTypes[i].name}</MenuItem>
+                <MenuItem value={gear[i].id}>{gear[i].name}</MenuItem>
             )
 
         }
@@ -169,7 +171,7 @@ export default function GearForm() {
                         />
                         <Select className = {classes.root} labelId="label" id="select" value={gearTypeId}
                         onChange={handleChange1}>
-                            {options(gearTypes)}
+                            {options(gear)}
                         </Select>
                         <SpecialTextField id="textfield1"
                         placeholder="Link a url to a picture of your gear!"

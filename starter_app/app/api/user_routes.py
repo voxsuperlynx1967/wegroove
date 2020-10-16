@@ -144,11 +144,12 @@ def nearbyusers():
     print(data)
     my_latitude = data["latitude"]
     my_longitude = data["longitude"]
+    radius = data["radius"]
     print(isinstance(my_latitude, float))
     def calc_distance(latlong1, latlong2):
         return func.sqrt(func.pow(69.1 * (latlong1[0] - latlong2[0]),2)
                     + func.pow(53.0 * (latlong1[1] - latlong2[1]),2))
-    response=Musician.query.filter(calc_distance((Musician.latitude, Musician.longitude), (my_latitude, my_longitude)) < 10).all()
+    response=Musician.query.filter(calc_distance((Musician.latitude, Musician.longitude), (my_latitude, my_longitude)) < radius).all()
     print(response, "hi")
     musicianList = [musician.to_dict() for musician in response]
     print(musicianList)
@@ -164,4 +165,41 @@ def nearbyusers():
 
 
 
-    # + (69.1*(-77.41605369999999 - Musician.longitude) * math.cos(Musician.latitude / 57.3)) ** 2)
+@user_routes.route('/update', methods=["PUT"])
+def updateuser():
+    data = request.get_json()
+    musicianId = data["id"]
+    email = data["email"]
+    password = data["password"]
+    confirmPassword = data["confirmPassword"]
+    bio = data["bio"]
+    mediaLink = data["mediaLink"]
+
+    if not email:
+        return jsonify(message="Email is required"), 400
+    if "@" not in email:
+        return jsonify(message="Please enter a valid email address"), 400
+
+    if not password or confirmPassword:
+        musician = Musician.query.filter_by(id=musicianId).first()
+        musician.email = email
+        musician.bio = bio
+        musician.mediaLink = mediaLink
+        db.session.commit()
+
+    if password:
+        if not confirmPassword:
+            return jsonify(message="You must confirm your new password"), 400
+    if confirmPassword:
+        if not password:
+            return jsonify(message="You must confirm your new password"), 400
+    if password and confirmPassword:
+        if password != confirmPassword:
+            return jsonify(message="Password values must match"), 400
+        else:
+            musician = Musician.query.filter_by(id=musicianId).first()
+            musician.email = email
+            musician.bio = bio
+            musician.mediaLink = mediaLink
+            musician.hashed_password = set_password(password)
+            db.session.commit()

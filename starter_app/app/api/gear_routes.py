@@ -40,3 +40,44 @@ def alltypetags():
         geartypetag["tagName"] = tag1["name"]
         geartypetag["tagType"] = tag1["type"]
     return {"gearTypeTags": geartypetags}
+@gear_routes.route('/new', methods=["POST"])
+def newgear():
+    data = request.get_json()
+    # try:
+    name = data['name']
+    gearTypeId = data['gearTypeId']
+    musicianId = data['musicianId']
+    mediaLink = data['mediaLink']
+
+    if not name or not gearTypeId or not mediaLink:
+      return jsonify(message="Name, gear type, and mediaLink required"), 400
+    gear = Gear(
+        name=name,
+        gearTypeId=gearTypeId,
+        musicianId=musicianId,
+        mediaLink=mediaLink
+      )
+    db.session.add(gear)
+    db.session.commit()
+    gear1 = gear.to_dict()
+    return jsonify(gear=gear1), 200
+
+@gear_routes.route('/attribute/new', methods=["POST"])
+def newattribute():
+    data = request.get_json()
+    # try:
+    gearId = data['gearId']
+    tag = data['tag']
+    value = data['value']
+
+    if not gearId or not tag or not value:
+      return jsonify(message="Tag and value are required!"), 400
+    attribute = GearAttribute(
+        gearId=gearId,
+        tag=tag,
+        value=value
+      )
+    db.session.add(attribute)
+    db.session.commit()
+    attribute1 = attribute.to_dict()
+    return jsonify(attribute=attribute1), 200
