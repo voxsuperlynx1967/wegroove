@@ -90,7 +90,7 @@ function LoginPage() {
                 onChange={e => setPassword(e.target.value)}
                 />
               <SpecialButton>Log in</SpecialButton>
-              <form onSubmit={handleDemoSubmit}>
+              <form className ="demosubmit" onSubmit={handleDemoSubmit}>
                 <SpecialButton>Log in as demo user</SpecialButton>
               </form>
             </ThemeProvider>

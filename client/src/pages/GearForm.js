@@ -124,7 +124,8 @@ export default function GearForm() {
               'Content-Type': 'multipart/form-data'
             }
           });
-          setMediaLink(res.data)
+          const link = await res.data
+          setMediaLink(link)
         //   setUploadedFile({ fileName, filePath })
         } catch (err) {
           if (err.response.status === 500) {
