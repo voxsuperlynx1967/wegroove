@@ -15,10 +15,14 @@ with app.app_context():
   Neil = Musician(firstName = 'Neil', lastName = 'Young', email = 'javier@aa.io', hashed_password=hashed, latitude=42.3520045,longitude=-71.14634459999999, bio="Old man look at my life, you're a lot like I am right now", mediaLink="https://www.rollingstone.com/wp-content/uploads/2018/10/neil-young-1976-live-album-songs-for-judy.jpg")
   Anton = Musician(firstName = 'Anton', lastName = 'Newcombe', email = 'dunston@aa.io', hashed_password=hashed, latitude=42.3520045,longitude=-71.14634459999999, bio="I AM the Brian Jonestown Massacre. No one else in my band matters. Okay??", mediaLink="https://s3.amazonaws.com/quietus_production/images/articles/15620/Anton_Newcombe_1403792689_crop_550x555.jpg")
   Simon = Musician(firstName = 'Simon', lastName = 'Carroll', email = 'snc40@georgetown.edu', hashed_password=hashed, latitude=42.3520045,longitude=-71.14634459999999, bio="Just a regular guy", mediaLink="https://scontent-bos3-1.xx.fbcdn.net/v/t31.0-8/28828695_877121324746_5175806898433144366_o.jpg?_nc_cat=111&_nc_sid=cdbe9c&_nc_ohc=W4yVoUA_6wwAX9JF833&_nc_ht=scontent-bos3-1.xx&oh=09ce4920c3551e46d1a646c5a2799819&oe=5FA86A62")
+  John = Musician(firstName = 'John', lastName = 'Lennon', email = 'jlennon@gmail.com', hashed_password=hashed, latitude=42.863334,longitude=-71.369324, bio="Jai guru deva om", mediaLink="https://i.pinimg.com/originals/c1/61/50/c16150c3ef51107f16da504d552da3f0.jpg")
+  George = Musician(firstName = 'George', lastName = 'Harrison', email = 'gharrison@gmail.com', hashed_password=hashed, latitude=42.271168,longitude=-71.425219, bio="Stop throwing jelly beans at me", mediaLink="https://i.pinimg.com/originals/5f/98/8f/5f988ff29a92dd2abda7daffc4f1e379.png")
   db.session.add(Jimi)
   db.session.add(Neil)
   db.session.add(Anton)
   db.session.add(Simon)
+  db.session.add(John)
+  db.session.add(George)
 
   db.session.commit()
 
@@ -41,6 +45,8 @@ with app.app_context():
   jimiguitar = Gear(name='My Strat', gearTypeId=3, musicianId=1, mediaLink="https://www.livewiremusicnow.com/uploads/1/2/5/4/125400209/s304404583291342992_p91_i8_w833.png")
   jimicab  = Gear(name='Big Fella', gearTypeId=1, musicianId=1, mediaLink="https://lh3.googleusercontent.com/0tkJoLDz29pp6QCqfm6gzym5j287Ar_OOLObVbvCf6rGT5zFxl1ReeMDnVIVzaNmtYHE5g=s89")
   simonguit  = Gear(name='My SG', gearTypeId=3, musicianId=4, mediaLink="https://i.pinimg.com/originals/b0/38/19/b03819e46507182b5afe684ce63921cb.jpg")
+  johnguit  = Gear(name='My Rick', gearTypeId=3, musicianId=5, mediaLink="https://i.pinimg.com/originals/c2/05/d9/c205d9e7626d0f162973c603388b901a.jpg")
+  georgeguit  = Gear(name='My Guitar', gearTypeId=3, musicianId=6, mediaLink="https://i.pinimg.com/originals/e0/21/40/e0214081f05bd2866e2722aaad51c656.jpg")
 
 
 
@@ -51,6 +57,8 @@ with app.app_context():
   db.session.add(jimiguitar)
   db.session.add(jimicab)
   db.session.add(simonguit)
+  db.session.add(johnguit)
+  db.session.add(georgeguit)
 
   db.session.commit()
 
@@ -114,7 +122,7 @@ with app.app_context():
   antguitmake = GearAttribute(gearId=2, tag="Make", value="Vox")
   antguitmodel = GearAttribute(gearId=2, tag="Model", value="Phantom")
   antguitstring = GearAttribute(gearId=2, tag="String", value="6")
-  antguitbody = GearAttribute(gearId=2, tag="Body", value="Semi-Hollow")
+  antguitbody = GearAttribute(gearId=2, tag="Body", value="Solid")
   neilampmake = GearAttribute(gearId=3, tag="Make", value="Fender")
   neilampmodel = GearAttribute(gearId=3, tag="Model", value="Tweed Deluxe")
   neilampwatts = GearAttribute(gearId=3, tag="Watts", value="100")
@@ -135,6 +143,13 @@ with app.app_context():
   syguitmodel = GearAttribute(gearId=7, tag="Model", value="SG")
   syguitstring = GearAttribute(gearId=7, tag="String", value="6")
   syguitbody = GearAttribute(gearId=7, tag="Body", value="Solid")
+  joguitmake = GearAttribute(gearId=8, tag="Make", value="Rickenbacker")
+  joguitstring = GearAttribute(gearId=8, tag="String", value="6")
+  joguitbody = GearAttribute(gearId=8, tag="Body", value="Solid")
+  gguitmake = GearAttribute(gearId=9, tag="Make", value="Gretsch")
+  gguitmodel = GearAttribute(gearId=9, tag="Model", value="Country Gentleman")
+  gguitstring = GearAttribute(gearId=9, tag="String", value="6")
+  gguitbody = GearAttribute(gearId=9, tag="Body", value="Semi-Hollow")
 
   db.session.add(antampmake)
   db.session.add(antampmodel)
@@ -164,6 +179,13 @@ with app.app_context():
   db.session.add(syguitmodel)
   db.session.add(syguitstring)
   db.session.add(syguitbody)
+  db.session.add(joguitmake)
+  db.session.add(joguitstring)
+  db.session.add(joguitbody)
+  db.session.add(gguitmake)
+  db.session.add(gguitmodel)
+  db.session.add(gguitstring)
+  db.session.add(gguitbody)
 
 
 
