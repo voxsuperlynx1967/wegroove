@@ -16,6 +16,7 @@ import { InputLabel } from '@material-ui/core';
 import { postGear } from '../store/gear';
 import { postAttribute } from '../store/attributes';
 import { useHistory, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -64,7 +65,10 @@ export default function GearForm() {
     const [gearTypeId, setGearTypeId] = useState(1)
     const [mediaLink, setMediaLink] = useState('');
     const currentUser = useSelector(state => state.auth.musician);
+    const currentUserId = currentUser.id
     const [musicianId, setMusicianId] = useState(currentUser.id)
+    const [file, setFile] = useState('');
+    const [filename, setFilename] = useState('Choose File');
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -100,9 +104,36 @@ export default function GearForm() {
         setName(event.target.value);
     };
 
-    const handleChange3 = (event) => {
-        setMediaLink(event.target.value);
-    };
+
+    const handleFileChange = e => {
+        setFile(e.target.files[0]);
+        setFilename(e.target.files[0].name)
+      }
+
+
+
+      const handleSubmitz = async e => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file)
+        formData.append('id', currentUserId)
+
+        try {
+          const res = await axios.post('/api/photo/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+          setMediaLink(res.data)
+        //   setUploadedFile({ fileName, filePath })
+        } catch (err) {
+          if (err.response.status === 500) {
+            console.log('There was a problem with the server')
+          } else {
+            console.log(err.response.data.message)
+          }
+        }
+      }
 
 
 
@@ -164,11 +195,15 @@ export default function GearForm() {
                         onChange={handleChange1}>
                             {options(gearTypes)}
                         </Select>
-                        <SpecialTextField id="textfield1"
-                        placeholder="Link a url to a picture of your gear!"
-                        value={mediaLink}
-                        onChange={handleChange3}
+                        <div className="formlabels">Upload a picture of your gear</div>
+                        <div>
+                        <div className='upload-photo'>
+                        <input type='file' className='upload-photo' id='customPhoto'
+                            onChange={handleFileChange}
                         />
+                        </div>
+                        <input type='button' onClick={handleSubmitz} value="Upload" className='uploadButton' />
+                        </div>
 
                         {/* <SpecialTextField id="textfield2"
                         type="password"

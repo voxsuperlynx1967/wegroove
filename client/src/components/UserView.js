@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import EditIcon from '@material-ui/icons/Edit';
 import SpecialTextField from '../components/SpecialTextField';
 import { update } from '../store/auth'
+import axios from 'axios';
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -53,9 +54,43 @@ export default function UserView({ musician }) {
   const [mediaLink, setMediaLink] = useState(musician.mediaLink)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-
+  const currentUserId = currentUser.id
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+
+  const handleFileChange = e => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name)
+  }
+
+
+
+  const handleSubmitz = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file)
+    formData.append('id', currentUserId)
+
+    try {
+      const res = await axios.post('/api/photo/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      setMediaLink(res.data)
+    //   setUploadedFile({ fileName, filePath })
+    } catch (err) {
+      if (err.response.status === 500) {
+        console.log('There was a problem with the server')
+      } else {
+        console.log(err.response.data.message)
+      }
+    }
+  }
+
+
 
 
   const handleOpen = () => {
@@ -119,11 +154,14 @@ export default function UserView({ musician }) {
 
         </SpecialTextField>
         <div className="formlabels">Profile picture</div>
-        <SpecialTextField
-        value={mediaLink}
-        onChange={handleChange3}>
-
-        </SpecialTextField>
+        <div>
+        <div className='upload-photo'>
+          <input type='file' className='upload-photo' id='customPhoto'
+            onChange={handleFileChange}
+          />
+        </div>
+        <input type='button' onClick={handleSubmitz} value="Upload" className='uploadButton' />
+        </div>
         <SpecialButton className="superspecialbutton"> Update your profile</SpecialButton>
 
       </form>
