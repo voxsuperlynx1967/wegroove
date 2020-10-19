@@ -138,7 +138,7 @@ function SignupPage() {
 
   }
 
-  if (currentUser || currentUserToken ) return <Redirect to="/user" />;
+  if (currentUser || currentUserToken ) return <Redirect to={`/users/${currentUser.id}`} />;
   return (
     <div class="pagewrapper">
       <Container
@@ -147,13 +147,13 @@ function SignupPage() {
         maxWidth="sm">
         <GrooveLogo id="groovelogo1"/>
         <span id="bigspan">
-          <span>Some people want the world.
+          <span className="span1">Some people want the world.
           </span>
-          <span>Others just want good tone.
+          <span className="span1">Others just want good tone.
           </span>
         </span>
         <ThemeProvider theme={theme}>
-        <form onSubmit={handleSubmit}>
+        <form className="form1" onSubmit={handleSubmit}>
         <div className="errors-container">
                       <ul className="errors" id="sign-up-errors"></ul>
                     </div>

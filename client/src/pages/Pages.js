@@ -14,6 +14,8 @@ import Browse from './Browse'
 
 import GearForm from './GearForm'
 
+import AttributeForm from './AttributeForm'
+
 
 
 export default function Pages() {
@@ -26,6 +28,7 @@ export default function Pages() {
         <Route path ="/users/:id" component={UserProfile}/>
         <Route path = "/browse/gear/all" component={Browse}/>
         <Route path ="/gear/new" component={GearForm}/>
+        <Route path ="/gear/attributes" component={AttributeForm}/>
       </>
     );
   }

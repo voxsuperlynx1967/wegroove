@@ -76,7 +76,7 @@ function LoginPage() {
           <div className="errors-container">
                       <ul className="errors" id="sign-up-errors"></ul>
                     </div>
-          <form onSubmit={handleSubmit}>
+          <form className="form1" onSubmit={handleSubmit}>
             <ThemeProvider theme={theme}>
               <SpecialTextField id="textfield1"
                 placeholder="Email"
