@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import SpecialButton from '../components/SpecialButton'
 import NavBar from '../components/NavBar'
 import UserView from '../components/UserView'
-import './UserProfile.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { Grid } from '@material-ui/core';

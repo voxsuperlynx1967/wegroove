@@ -1,12 +1,13 @@
 
 
 .containerguy {
-    background-color: #00B8FF;
+    background-color: lightgrey;
     font-family: 'Fredoka One', cursive;
     font-size: 30px;
     padding: 30px;
     border-radius: 5px;
-    height: 100%;
+    height: 75vh;
+    overflow-y: scroll;
 }
 
 .gearname {

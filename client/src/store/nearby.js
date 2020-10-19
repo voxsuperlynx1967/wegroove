@@ -7,14 +7,14 @@ export const getNearby = (nearbyMusicians) => {
     }
 }
 
-export const fetchUsersNearby = (latitude, longitude) => {
+export const fetchUsersNearby = (latitude, longitude, radius) => {
     return async (dispatch) => {
       const res = await fetch(`/api/users/nearby`, {
         method: "put",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ latitude, longitude })
+        body: JSON.stringify({ latitude, longitude, radius })
       });
       debugger
       const data = await res.json();

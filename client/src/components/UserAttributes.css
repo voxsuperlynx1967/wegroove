@@ -17,8 +17,12 @@
 
 }
 .five {
-    background-color: orange;
+    background-color: #00B8FF;
 
+}
+
+.edit {
+    cursor: pointer;
 }
 
 .MuiTypography-root.MuiListItemText-primary.MuiTypography-body1 {
@@ -46,5 +50,9 @@
 
 .MuiSvgIcon-root.edit {
     fill: white;
+    cursor: pointer;
+}
+
+.nav {
     cursor: pointer;
 }

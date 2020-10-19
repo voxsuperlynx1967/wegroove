@@ -39,7 +39,7 @@ export default function UserPanelGallery( user ) {
         const list1 = []
         for (let i=0; i<profileGears.length; i++) {
             list1.push(
-                <div className="containerguy">
+                <div className="containerguy2">
                     <span className="gearname">{profileGears[i].name}</span>
                     <img className="imagebloke" src={profileGears[i].mediaLink}/>
                     <div className="attcontainer">

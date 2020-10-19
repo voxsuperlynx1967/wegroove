@@ -74,6 +74,7 @@ export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
+  const currentUser = useSelector(state => state.auth.musician);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -94,6 +95,10 @@ export default function PrimarySearchAppBar() {
 
   }
 
+  const handleHome = () => {
+      history.push(`/users/${currentUser.id}`)
+  }
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -107,7 +112,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleHome}>Profile</MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );

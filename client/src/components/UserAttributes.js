@@ -14,8 +14,9 @@ import './UserAttributes.css'
 import Roles from './Roles.js'
 import Gallery from './Gallery'
 import SpecialButton from '../components/SpecialButton'
-import EditIcon from '@material-ui/icons/Edit';
+import AddCircle from '@material-ui/icons/AddCircle';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,9 @@ export default function UserAttributes( id ) {
   const edit = () => {
     if (currentUser.id === parseInt(id.id)) {
         return (
-            <EditIcon className="edit"/>
+            <NavLink to="/gear/new" className="nav">
+                <AddCircle className="edit"/>
+            </NavLink>
         )
     }
   }
@@ -48,14 +51,14 @@ export default function UserAttributes( id ) {
         </ListItemAvatar>
         <ListItemText className="text" primary="Influences" secondary="Who influences you?" />
       </ListItem>*/}
-      <ListItem className="two">
+      {/* <ListItem className="two">
         <ListItemAvatar>
           <Avatar>
             <LibraryMusicIcon />
           </Avatar>
         </ListItemAvatar>
         <ListItemText className="text" primary="Skills" secondary="What can you do?" />
-      </ListItem>
+      </ListItem> */}
       {/* <Roles/> */}
       {/* <ListItem className="three">
         <ListItemAvatar>

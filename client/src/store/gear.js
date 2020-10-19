@@ -1,5 +1,4 @@
 const GET_GEAR = 'gear/GET_GEAR';
-const GET_TYPES = 'gear/GET_TYPES'
 const SET_GEAR = 'gear/SET_GEAR'
 
 export const getGear = (musiciansGear) => {
@@ -9,13 +8,7 @@ export const getGear = (musiciansGear) => {
     }
 }
 
-export const getTypes = (gearTypes) => {
-    return {
-        type: GET_TYPES,
-        gearTypes
 
-    }
-}
 
 export const makeGear = (gear) => {
     return {
@@ -37,14 +30,7 @@ export const fetchGear = (id) => {
     };
   }
 
-  export const getGearTypes = () => {
-    return async (dispatch) => {
-        const res = await fetch(`/api/gear/types`);
-        const data = await res.json();
-        dispatch(getTypes(data.gearTypes))
 
-      };
-  }
 
   export const postGear = (name, gearTypeId, musicianId, mediaLink) => {
     return async dispatch => {
@@ -73,7 +59,7 @@ export const fetchGear = (id) => {
         //   errorsList.appendChild(errorLi)
         // } else {
 
-          dispatch(makeGear(data));
+          dispatch(makeGear(data.gear));
           res.data = data;
 
         // }
@@ -89,9 +75,6 @@ export const fetchGear = (id) => {
       case GET_GEAR:
           debugger
           return action.musiciansGear
-      case GET_TYPES:
-          debugger
-          return action.gearTypes
         case SET_GEAR:
           debugger
           return action.gear

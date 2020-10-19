@@ -7,13 +7,17 @@ import './GearForm.css';
 import { makeStyles } from "@material-ui/core/styles";
 import SpecialTextField from '../components/SpecialTextField';
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { getGearTypes } from '../store/gear';
+import { getGearTypes } from '../store/type';
 import { getGearTypeTags } from '../store/tags';
 import NavBar from '../components/NavBar'
 import { Select } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
 import { InputLabel } from '@material-ui/core';
 import { postGear } from '../store/gear';
+import { postAttribute } from '../store/attributes';
+import { useHistory, useLocation } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 const useStyles = makeStyles({
@@ -61,27 +65,36 @@ export default function GearForm() {
     const [gearTypeId, setGearTypeId] = useState(1)
     const [mediaLink, setMediaLink] = useState('');
     const currentUser = useSelector(state => state.auth.musician);
+    const currentUserId = currentUser.id
     const [musicianId, setMusicianId] = useState(currentUser.id)
-    const [tag, setTag] = useState('Attribute')
-    const [value, setValue] = useState('')
+    const [file, setFile] = useState('');
+    const [filename, setFilename] = useState('Choose File');
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getGearTypes());
-        debugger
+
       }, [dispatch]);
 
     useEffect(() => {
         dispatch(getGearTypeTags());
-        debugger
+
       }, [dispatch]);
 
+    const gearTypes = useSelector(state => state.type)
 
 
-    const gear = useSelector(state => state.gear);
-    const gearTags = useSelector(state => state.tags);
-    debugger
+
+
     // const gearTypeTags = useSelector(state => state.gear.gearTypeTags)
     const classes = useStyles();
+    const history = useHistory();
 
     const handleChange1 = (event) => {
         setGearTypeId(event.target.value);
@@ -91,28 +104,54 @@ export default function GearForm() {
         setName(event.target.value);
     };
 
-    const handleChange3 = (event) => {
-        setMediaLink(event.target.value);
-    };
 
-    const handleChange4 = (event) => {
-        setTag(event.target.value);
-    };
+    const handleFileChange = e => {
+        setFile(e.target.files[0]);
+        setFilename(e.target.files[0].name)
+      }
 
-    const handleChange5 = (event) => {
-        setValue(event.target.value);
-    };
+
+
+      const handleSubmitz = async e => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', file)
+        formData.append('id', currentUserId)
+
+        try {
+          const res = await axios.post('/api/photo/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+          setMediaLink(res.data)
+        //   setUploadedFile({ fileName, filePath })
+        } catch (err) {
+          if (err.response.status === 500) {
+            console.log('There was a problem with the server')
+          } else {
+            console.log(err.response.data.message)
+          }
+        }
+      }
+
+
 
 
 
     const handleSubmit1 = (event) => {
         event.preventDefault()
-        document.getElementById("firstform").classList.add("hidden");
+        document.getElementById("firstform").remove();
         dispatch(postGear(name, gearTypeId, musicianId, mediaLink))
-        document.getElementById("secondh").innerHTML = "Let's get more specific";
-        const sform = document.getElementById("secondform")
-        sform.classList.remove("hidden")
+        history.push('/gear/attributes')
+
+        // document.getElementById("secondh").innerHTML = "Let's get more specific";
+        // const sform = document.getElementById("secondform")
+        // sform.classList.remove("hidden")
     }
+
+
+
 
 
 
@@ -130,24 +169,7 @@ export default function GearForm() {
         return list2
     }
 
-    const renderit = (gearTypeId, gearTags) => {
-        let list2=[]
-        for (let i=0; i<gearTags.length; i++) {
-            if (gearTags[i].gearTypeId === gearTypeId) {
-                console.log(gearTags[i])
-                list2.push(gearTags[i])
-            }
-        }
-        const list3 = []
-        for (let i=0; i<list2.length; i++) {
-            list3.push(
-            <MenuItem value={list2[i].tagName}>{list2[i].tagName}</MenuItem>
-            )
 
-        }
-        return list3
-
-    }
     return (
         <>
             <NavBar/>
@@ -160,7 +182,7 @@ export default function GearForm() {
                 maxWidth="sm">
                 <ThemeProvider theme={theme}>
                 <div className="header" id="secondh"> Let's start out with some basic info</div>
-                <form id="firstform" onSubmit={handleSubmit1}>
+                <form className="form2" id="firstform" onSubmit={handleSubmit1}>
                     <div className="errors-container">
                                 <ul className="errors" id="sign-up-errors"></ul>
                                 </div>
@@ -171,13 +193,17 @@ export default function GearForm() {
                         />
                         <Select className = {classes.root} labelId="label" id="select" value={gearTypeId}
                         onChange={handleChange1}>
-                            {options(gear)}
+                            {options(gearTypes)}
                         </Select>
-                        <SpecialTextField id="textfield1"
-                        placeholder="Link a url to a picture of your gear!"
-                        value={mediaLink}
-                        onChange={handleChange3}
+                        <div className="formlabels">Upload a picture of your gear</div>
+                        <div>
+                        <div className='upload-photo'>
+                        <input type='file' className='upload-photo' id='customPhoto'
+                            onChange={handleFileChange}
                         />
+                        </div>
+                        <input type='button' onClick={handleSubmitz} value="Upload" className='uploadButton' />
+                        </div>
 
                         {/* <SpecialTextField id="textfield2"
                         type="password"
@@ -201,24 +227,7 @@ export default function GearForm() {
 
                 </form>
 
-                <form id="secondform" className="hidden">
-                <div className="errors-container">
-                                    <ul className="errors" id="sign-up-errors"></ul>
-                                    </div>
-                            <Select className = {classes.root} labelId="label" id="select2" value={tag}
-                            onChange={handleChange4}>
-                                {renderit(gearTypeId, gearTags)}
-                            </Select>
-                            <SpecialTextField id="textfield1"
-                                placeholder="Value"
-                                value={value}
-                                onChange={handleChange5}
-                            />
 
-
-                        <SpecialButton id="2submit">Add attribute</SpecialButton>
-                        <SpecialButton id="2submit">Finish creating your gear!</SpecialButton>
-                </form>
                 </ThemeProvider>
               </Container>
             </div>

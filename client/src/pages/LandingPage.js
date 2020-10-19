@@ -76,9 +76,9 @@ function LandingPage(){
                 maxWidth="sm">
                 <GrooveLogo id="groovelogo1"/>
                 <span id="bigspan">
-                <span>Some people need a date.
+                <span className="span1">Some people need a date.
                 </span>
-                <span>Others just need a drummer.
+                <span className="span1">Others just need a drummer.
                 </span>
                 </span>
                 <ThemeProvider theme={theme}>
