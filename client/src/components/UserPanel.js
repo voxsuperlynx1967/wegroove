@@ -18,6 +18,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   fun: {
     background: '#00B8FF',
+    height: "20%",
   },
   root: {
     maxWidth: 345,
@@ -57,7 +58,7 @@ export default function UserPanel( user ) {
       </CardContent>
       <CardActions className = {classes.fun} disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          {/* <FavoriteIcon /> */}
         </IconButton>
       </CardActions>
     </Card>

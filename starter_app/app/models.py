@@ -15,6 +15,7 @@ class Musician(db.Model):
   mediaLink = db.Column(db.String(2000))
   hashed_password = db.Column(db.Binary(100), nullable=False)
   gear = db.relationship('Gear', backref='musicians', lazy=True)
+  follows = db.relationship('Follow', backref='musicians', primaryjoin="or_(Musician.id==Follow.musicianId, Musician.id==Follow.followerId)", lazy=True)
 
   def to_dict(self):
     return {
@@ -100,4 +101,14 @@ class GearAttribute(db.Model):
         "gearId": self.gearId,
         "tag": self.tag,
         "value": self.value
+    }
+
+class Follow(db.Model):
+    musicianId = db.Column(db.Integer, db.ForeignKey('musicians.id'), primary_key = True)
+    followerId = db.Column(db.Integer, db.ForeignKey('musicians.id'), primary_key = True)
+
+    def to_dict(self):
+        return {
+        "musicianId": self.musicianId,
+        "followerId": self.followerId,
     }

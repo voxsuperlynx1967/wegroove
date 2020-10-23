@@ -44,19 +44,6 @@ const theme = createMuiTheme({
         padding: "20px",
       }
     },
-    MuiButtonBase: {
-      root: {
-        margin: "20px",
-      },
-    },
-    MuiButton: {
-      label: {
-        textTransform: "none",
-        font: "15px Helvetica Neue",
-        fontWeight: "bold",
-        padding: "10px"
-      }
-    }
   },
 });
 
@@ -199,7 +186,8 @@ function SignupPage() {
 
                     )}
 
-            <SpecialButton>Sign up</SpecialButton>
+            <SpecialButton
+            className="firstbutt">Sign up</SpecialButton>
 
         </form>
         </ThemeProvider>

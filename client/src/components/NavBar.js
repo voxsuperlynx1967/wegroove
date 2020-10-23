@@ -133,7 +133,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton> */}
           <GrooveLogo id="navgroovy" />
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -145,12 +145,12 @@ export default function PrimarySearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
           <div className={classes.grow} />
           <div className="iconsection">
-            <Badge className ="icon2" badgeContent={17} color="secondary">
+            {/* <Badge className ="icon2" badgeContent={17} color="secondary">
                 <NotificationsIcon />
-            </Badge>
+            </Badge> */}
             <IconButton
               edge="end"
               aria-label="account of current user"

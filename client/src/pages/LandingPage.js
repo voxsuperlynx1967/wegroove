@@ -30,19 +30,6 @@ const useStyles = makeStyles({
           font: "15px Helvetica Neue",
           padding: "20px",
         }
-      },
-      MuiButtonBase: {
-        root: {
-          margin: "10px 0px 0px 10px",
-        },
-      },
-      MuiButton: {
-        label: {
-          textTransform: "none",
-          font: "15px Helvetica Neue",
-          fontWeight: "bold",
-          padding: "10px"
-        }
       }
     },
   });
@@ -83,9 +70,11 @@ function LandingPage(){
                 </span>
                 <ThemeProvider theme={theme}>
                 <SpecialButton
+                    className="firstbutt"
                     onClick={signupclick}
                     >Join us</SpecialButton>
                     <SpecialButton
+                    className="firstbutt"
                     onClick={loginclick}
                     >Log in</SpecialButton>
                     </ThemeProvider>
