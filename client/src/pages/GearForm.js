@@ -224,7 +224,7 @@ export default function GearForm() {
                         onChange={e => setlastName(e.target.value)}
                         /> */}
 
-                        <SpecialButton id="1submit">Start creating your gear</SpecialButton>
+                        <SpecialButton className="firstbutt" id="1submit">Start creating your gear</SpecialButton>
 
                 </form>
 

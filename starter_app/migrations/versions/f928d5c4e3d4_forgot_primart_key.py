@@ -1,8 +1,8 @@
-"""again users and gear
+"""forgot primart key
 
-Revision ID: 30d294539439
+Revision ID: f928d5c4e3d4
 Revises: 
-Create Date: 2020-10-09 17:00:05.605802
+Create Date: 2020-10-22 19:19:34.555788
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '30d294539439'
+revision = 'f928d5c4e3d4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,6 +42,13 @@ def upgrade():
     sa.Column('type', sa.String(length=100), nullable=False),
     sa.Column('is_required', sa.Binary(), nullable=True),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('follow',
+    sa.Column('musicianId', sa.Integer(), nullable=False),
+    sa.Column('followerId', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['followerId'], ['musicians.id'], ),
+    sa.ForeignKeyConstraint(['musicianId'], ['musicians.id'], ),
+    sa.PrimaryKeyConstraint('musicianId', 'followerId')
     )
     op.create_table('gear',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -76,6 +83,7 @@ def downgrade():
     op.drop_table('gear_attribute')
     op.drop_table('geartypetags')
     op.drop_table('gear')
+    op.drop_table('follow')
     op.drop_table('tags')
     op.drop_table('musicians')
     op.drop_table('geartypes')

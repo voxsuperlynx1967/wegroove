@@ -7,6 +7,7 @@ import nearby from './nearby'
 import tags from './tags'
 import attributes from './attributes'
 import type from './type'
+import follow from './follow'
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     nearby,
     tags,
     attributes,
-    type
+    type,
+    follow
 });
 
 let storeEnhancer;

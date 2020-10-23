@@ -139,28 +139,32 @@ def getspecific(qid):
 @user_routes.route('/nearby', methods=["PUT"])
 def nearbyusers():
     data = request.get_json()
-    print(data)
-    print(data)
-    print(data)
     my_latitude = data["latitude"]
     my_longitude = data["longitude"]
     radius = data["radius"]
-    print(isinstance(my_latitude, float))
+    filtz = data["filtz"]
     def calc_distance(latlong1, latlong2):
         return func.sqrt(func.pow(69.1 * (latlong1[0] - latlong2[0]),2)
                     + func.pow(53.0 * (latlong1[1] - latlong2[1]),2))
     response=Musician.query.filter(calc_distance((Musician.latitude, Musician.longitude), (my_latitude, my_longitude)) < radius).all()
-    print(response, "hi")
     musicianList = [musician.to_dict() for musician in response]
-    print(musicianList)
     for musician in musicianList:
-        gears = Gear.query.filter_by(musicianId=musician["id"]).all()
-        gearList = [gear.to_dict() for gear in gears]
-        for gear in gearList:
-            attributeList = GearAttribute.query.filter_by(gearId=gear["id"]).all()
-            attributedict = [attribute.to_dict() for attribute in attributeList]
-            gear["attributes"] = attributedict
-        musician["gear"] = gearList
+        if filtz == 0:
+            gears = Gear.query.filter_by(musicianId=musician["id"]).all()
+            gearList = [gear.to_dict() for gear in gears]
+            for gear in gearList:
+                attributeList = GearAttribute.query.filter_by(gearId=gear["id"]).all()
+                attributedict = [attribute.to_dict() for attribute in attributeList]
+                gear["attributes"] = attributedict
+            musician["gear"] = gearList
+        else:
+            gears = Gear.query.filter_by(musicianId=musician["id"]).filter_by(gearTypeId=filtz)
+            gearList = [gear.to_dict() for gear in gears]
+            for gear in gearList:
+                attributeList = GearAttribute.query.filter_by(gearId=gear["id"]).all()
+                attributedict = [attribute.to_dict() for attribute in attributeList]
+                gear["attributes"] = attributedict
+            musician["gear"] = gearList
     return {"nearbyMusicians": musicianList}
 
 

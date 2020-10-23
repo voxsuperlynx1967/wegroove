@@ -24,6 +24,22 @@
     padding: 7%;
 }
 
+.followFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+
+}
+
+.follow {
+    font-family: 'Fredoka One';
+    font-size: 14px;
+    color: black;
+    padding: 1%;
+    cursor: pointer;
+}
+
 .MuiSvgIcon-root.edit {
     fill: #00B8FF;
 }
@@ -52,7 +68,31 @@
     padding: 10px;
 }
 
-.MuiButtonBase-root.MuiButton-root.makeStyles-root-8.MuiButton-contained.superspecialbutton.MuiButton-containedSizeLarge.MuiButton-sizeLarge {
-    background-color: orange;
-    padding: 10px;
+
+.MuiCardMedia-root.musicimage.MuiCardMedia-media.MuiCardMedia-img {
+    margin: 10%;
+    width: 80%;
+}
+
+.followlis {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5%;
+}
+
+.followname {
+    padding-left: 5%;
+    font-family: 'Fredoka One', cursive;
+    font-size: 25px;
+}
+
+.nope1 {
+    text-decoration: none;
+}
+
+.nobody12 {
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 25px;
 }

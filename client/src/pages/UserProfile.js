@@ -15,6 +15,8 @@ import { useParams } from "react-router-dom";
 
 import { fetchUser } from '../store/user'
 import { fetchGear } from '../store/gear'
+import { fetchFollows } from '../store/follow'
+
 
 import './UserProfile.css'
 
@@ -63,10 +65,15 @@ export default function UserProfile() {
       useEffect(() => {
         dispatch(fetchGear(id));
       }, [dispatch, id]);
+
+    useEffect(() => {
+        dispatch(fetchFollows(id));
+    }, [dispatch, id]);
+
+
     const profileUser = useSelector(state => state.user)
     const profileGears = useSelector(state => state.gear)
-    console.log(profileUser)
-    debugger
+    const follow = useSelector(state => state.follow)
 
     const currentUser = useSelector(state => state.auth.musician);
     const currentUserToken = useSelector(state => state.auth.auth_token);
@@ -78,7 +85,7 @@ export default function UserProfile() {
             <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid1">
                 <ThemeProvider theme={theme}>
                 <Grid item className="item1" key={profileUser.id}>
-                    <UserView key={profileUser.id} musician={profileUser}/>
+                    <UserView key={profileUser.id} musician={profileUser} followers={follow.Followers ? follow.Followers: []} following={follow.Following ? follow.Following : []}/>
                 </Grid>
                 <Grid item className="item2">
                     <UserAttributes id={id}/>

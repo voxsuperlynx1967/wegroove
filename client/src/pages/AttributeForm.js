@@ -157,10 +157,10 @@ export default function AttributeForm() {
                                 />
 
 
-                            <SpecialButton id="2submit">Add attribute</SpecialButton>
+                            <SpecialButton className="firstbutt" id="2submit">Add attribute</SpecialButton>
 
                     </form>
-                    <SpecialButton id="3submit" onClick={handleSubmit2}>Finish creating your gear!</SpecialButton>
+                    <SpecialButton className="firstbutt" id="3submit" onClick={handleSubmit2}>Finish creating your gear!</SpecialButton>
                     </ThemeProvider>
               </Container>
             </div>

@@ -31,15 +31,18 @@ const useStyles = makeStyles({
   root: {
     color: colors.text,
     padding: "10px",
-    font: "15px Helvetica Neue",
-    width: "60%",
+    height: "50%",
+    fontFamily: "'Fredoka One', cursive",
+    fontSize: "18px",
+    width: "17%",
+    marginRight: "2%",
     backgroundColor: colors.background,
     "&:hover": {
       backgroundColor: colors.background
     },
   }
 })
-function AuthSubmitButton(props) {
+function TinyGroovyButton(props) {
   const classes = useStyles();
 
   return (
@@ -57,4 +60,4 @@ function AuthSubmitButton(props) {
 
 }
 
-export default AuthSubmitButton;
+export default TinyGroovyButton;

@@ -28,19 +28,6 @@ const theme = createMuiTheme({
         padding: "20px",
       }
     },
-    MuiButtonBase: {
-      root: {
-        margin: "10px 0px 0px 0px",
-      },
-    },
-    MuiButton: {
-      label: {
-        textTransform: "none",
-        font: "15px Helvetica Neue",
-        fontWeight: "bold",
-        padding: "10px"
-      }
-    }
   },
 });
 
@@ -89,9 +76,11 @@ function LoginPage() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 />
-              <SpecialButton>Log in</SpecialButton>
+              <SpecialButton
+              className="firstbutt">Log in</SpecialButton>
               <form className ="demosubmit" onSubmit={handleDemoSubmit}>
-                <SpecialButton>Log in as demo user</SpecialButton>
+                <SpecialButton
+                className="firstbutt">Log in as demo user</SpecialButton>
               </form>
             </ThemeProvider>
           </form>

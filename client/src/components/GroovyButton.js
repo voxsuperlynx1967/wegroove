@@ -30,8 +30,9 @@ const theme = createMuiTheme({
 const useStyles = makeStyles({
   root: {
     color: colors.text,
-    padding: "10px",
-    font: "15px Helvetica Neue",
+    padding: "5%",
+    fontFamily: "'Fredoka One', cursive",
+    fontSize: "18px",
     width: "60%",
     backgroundColor: colors.background,
     "&:hover": {
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
     },
   }
 })
-function AuthSubmitButton(props) {
+function GroovyButton(props) {
   const classes = useStyles();
 
   return (
@@ -57,4 +58,4 @@ function AuthSubmitButton(props) {
 
 }
 
-export default AuthSubmitButton;
+export default GroovyButton;

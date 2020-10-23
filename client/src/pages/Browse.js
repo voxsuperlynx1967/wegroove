@@ -6,36 +6,63 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsersNearby } from '../store/nearby';
 import { Select } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import TinyGroovyButton from '../components/TinyGroovyButton';
+import { makeStyles } from '@material-ui/core/styles';
+import { useParams } from "react-router-dom";
+import { getGearTypes } from '../store/type';
 
 import { Grid } from '@material-ui/core';
 
 import './Browse.css'
 
 export default function Browse() {
+    let { filt } = useParams()
+    const [filtz, setFiltz] = useState(0);
     const currentUser = useSelector(state => state.auth.musician);
     const [radius, setRadius] = useState(10)
     const lat = currentUser.latitude
     const lng = currentUser.longitude
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchUsersNearby(lat, lng, radius));
+        dispatch(getGearTypes());
+
+      }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchUsersNearby(lat, lng, radius, filtz));
         debugger
       }, [dispatch]);
 
+
+    const gearTypes = useSelector(state => state.type)
     const userList = useSelector(state => state.nearby);
     debugger
+    const options = (gear) => {
+        let list2 = []
+        list2.push(
+            <MenuItem value={0}>All gear</MenuItem>
+        )
+        for (let i=0; i < gear.length ; i++) {
+            list2.push(
+                <MenuItem value={gear[i].id}>{gear[i].name}</MenuItem>
+            )
+
+        }
+        return list2
+    }
 
     const panels = ( userList ) => {
         const list1 = []
         debugger
         for (let i=0; i < userList.length; i++) {
             if (userList[i].id !== currentUser.id) {
-            list1.push(
-                <Grid item>
-                        <UserPanel user={userList[i]}/>
-                </Grid>
-            )
+                if (userList[i].gear.length !== 0) {
+                    list1.push(
+                        <Grid item>
+                                <UserPanel user={userList[i]}/>
+                        </Grid>
+                    )
+                }
+
             }
         }
         if (list1.length === 0) {
@@ -58,63 +85,48 @@ export default function Browse() {
 
     }
 
+    const handleFiltzChange = (event) => {
+        setFiltz(event.target.value)
+
+    }
+
     const handleRadiusSubmit = (event) => {
         event.preventDefault();
-        dispatch(fetchUsersNearby(lat, lng, radius))
+        dispatch(fetchUsersNearby(lat, lng, radius, filtz))
     }
 
 
 
-    const theme = createMuiTheme({
-        overrides: {
-          MuiInputBase: {
-            input: {
-              background: "white",
-              font: "15px Helvetica Neue",
-              padding: "20px",
-            }
-          },
-          MuiButtonBase: {
-            root: {
-              margin: "10px 0px 0px 0px",
-              height: "50%",
-
-            },
-          },
-          MuiButton: {
-            label: {
-              textTransform: "none",
-              font: "15px Helvetica Neue",
-              fontWeight: "bold",
-              padding: "10px"
-            }
-          },
-        },
-
-      });
     return (
         <>
             <NavBar/>
             <div className="banner"> Meet musicians in your area</div>
             <div className="radius">
               <form className="radform" onSubmit={handleRadiusSubmit}>
-                <Select className="radselect" labelId="label" id="select" value={radius}
-                        onChange={handleRadiusChange}>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={10}>10</MenuItem>
-                    <MenuItem value={25}>25</MenuItem>
-                    <MenuItem value={50}>50</MenuItem>
-                    <MenuItem value={50000}>I wanna see everybody!</MenuItem>
+              <Select className="filtselect" labelId="label" id="select" value={filtz}
+                        onChange={handleFiltzChange}>
+                    {options(gearTypes)}
+
 
                 </Select>
-                <Button type="submit" className="radbutton"> Change search radius!</Button>
+                <TinyGroovyButton type="submit" className="radbutton"> Filter</TinyGroovyButton>
+                <Select className="radselect" labelId="label" id="select" value={radius}
+                        onChange={handleRadiusChange}>
+                    <MenuItem value={1}>1 mi</MenuItem>
+                    <MenuItem value={10}>10 mi</MenuItem>
+                    <MenuItem value={25}>25 mi</MenuItem>
+                    <MenuItem value={50}>50 mi</MenuItem>
+                    <MenuItem value={100}>100 mi</MenuItem>
+                    <MenuItem value={50000}>Everyone</MenuItem>
+
+                </Select>
+                <TinyGroovyButton type="submit" className="radbutton"> Change search radius!</TinyGroovyButton>
               </form>
             </div>
-            <ThemeProvider theme={theme}>
+
                 <Grid id="browsegrid" container align="center" direction="row" spacing={4} alignItems="stretch" className="qgridusers">
                     {panels(userList)}
                 </Grid>
-            </ThemeProvider>
 
         </>
     )
