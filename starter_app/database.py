@@ -191,3 +191,15 @@ with app.app_context():
 
 
   db.session.commit()
+
+  follow1 = Follow(musicianId=1, followerId=2)
+  follow2 = Follow(musicianId=1, followerId=3)
+#   follow3 =
+#   follow4
+#   follow5
+#   follow6
+#   follow7
+#   follow8
+#   follow9
+#   follow10
+#   follow11
