@@ -78,15 +78,10 @@ function SignupPage() {
         setLatitude(lat)
         setLongitude(lng)
     }
-    const handleAddressChange = (e) => {
-
-        setAddress(e.target.value)
-
-    }
 
     const handleAddressInput = async (e) => {
         let search2 = e.target.value
-        console.log(search2)
+        setAddress(e.target.value)
         if (search2) {
             if (search2.includes(" ")) {
                 const searchval = search2.split(" ")
@@ -99,7 +94,7 @@ function SignupPage() {
         const nicelist = predictions.map(prediction => prediction.description)
         const small = nicelist.slice(0,3)
         setOptions(small)
-        setDisplay(!display)
+        setDisplay(true)
 
     }
 
@@ -172,8 +167,7 @@ function SignupPage() {
                 <SpecialTextField id="textfield4"
                     value={address}
                     placeholder="Enter address..."
-                    onChange={handleAddressChange}
-                    onInput ={handleAddressInput}
+                    onChange={handleAddressInput}
                         />
                 {display && (
                 <div ref={wrapperRef} className="autoContainer">
@@ -182,10 +176,17 @@ function SignupPage() {
                             <div>{v}</div>
                         </div>
                         })}
+                        <div className="option2" key={4}>
+                            <div>
+                              <img src="https://wegroovybaby.s3.amazonaws.com/googlemapsapi.png"></img>
+                            </div>
+                        </div>
                         </div>
 
                     )}
 
+
+            <span></span>
             <SpecialButton
             className="firstbutt">Sign up</SpecialButton>
 
