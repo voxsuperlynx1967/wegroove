@@ -1,7 +1,7 @@
 .headerdiv {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 10px;
     font-family: 'Fredoka One', cursive;
     font-size: 30px;
@@ -11,4 +11,5 @@
 
 .nope {
     text-decoration: none;
+    padding: 10px;
 }
