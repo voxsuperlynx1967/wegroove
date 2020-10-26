@@ -67,6 +67,7 @@ export default function UserView({ musician, followers, following }) {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open4, setOpen4] = useState(false);
   const [followed, setFollowed] = useState(false)
   const handleFileChange = e => {
     setFile(e.target.files[0]);
@@ -152,6 +153,14 @@ export default function UserView({ musician, followers, following }) {
 
   const handleClose2 = () => {
     setOpen2(false);
+  };
+
+  const handleOpen4 = () => {
+    setOpen4(true);
+  };
+
+  const handleClose4 = () => {
+    setOpen4(false);
   };
 
   const handleChange1 = (event) => {
@@ -335,7 +344,8 @@ export default function UserView({ musician, followers, following }) {
             <GroovyButton className="buttons" color="primary">
                  {followfunc()}
             </GroovyButton>
-             <GroovyButton className="buttons" color="primary">
+
+             <GroovyButton onClick={handleOpen4} className="buttons" color="primary">
                 Start chat
             </GroovyButton>
             </>
