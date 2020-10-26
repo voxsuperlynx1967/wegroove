@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { lightGreen } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import './UserPanel.css'
 import UserPanelGallery from './UserPanelGallery'
 import { useHistory, NavLink } from 'react-router-dom';
@@ -47,9 +47,9 @@ export default function UserPanel( user ) {
           </Avatar>
           </NavLink>
           {usercard.firstName}'s Board
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          {/* <IconButton aria-label="settings">
+            <MusicNoteIcon />
+          </IconButton> */}
 
 
         </div>
