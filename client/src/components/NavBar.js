@@ -3,22 +3,14 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import './NavBar.css'
 import GrooveLogo from './GrooveLogo';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../store/auth"
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -75,6 +67,7 @@ export default function PrimarySearchAppBar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector(state => state.auth.musician);
+  const currentUserId = currentUser.id ? currentUser.id : 0
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -132,7 +125,9 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton> */}
-          <GrooveLogo id="navgroovy" />
+          <NavLink to={`/users/${currentUser.id}`}>
+            <GrooveLogo id="navgroovy" />
+          </NavLink>
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

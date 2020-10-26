@@ -31,3 +31,7 @@
     justify-content: space-between;
     width: 7%;
 }
+
+#navgroovy {
+    cursor: pointer;
+}
