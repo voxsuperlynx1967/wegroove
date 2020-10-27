@@ -120,7 +120,7 @@ export default function Browse() {
                     <MenuItem value={50000}>Everyone</MenuItem>
 
                 </Select>
-                <TinyGroovyButton type="submit" className="radbutton"> Change search radius!</TinyGroovyButton>
+                <TinyGroovyButton type="submit" className="radbutton"> Filter</TinyGroovyButton>
               </form>
             </div>
 
