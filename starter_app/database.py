@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import Musician, GearType, Gear, Tag, GearTypeTag, GearAttribute, Follow
+from app.models import Musician, GearType, Gear, Tag, GearTypeTag, GearAttribute, Follow, Post, Comment
 from app.api.user_routes import set_password
 
 hashed = set_password('password')
@@ -291,5 +291,29 @@ with app.app_context():
   db.session.add(follow16)
   db.session.add(follow17)
   db.session.add(follow18)
+
+  db.session.commit()
+
+
+
+  post1 = Post(musicianId=1, postType="Gear", mediaLink="https://www.livewiremusicnow.com/uploads/1/2/5/4/125400209/s304404583291342992_p91_i8_w833.png", objectId=5, caption="I just added some new gear")
+  post2 = Post(musicianId=2, postType="Gear", mediaLink="https://images.equipboard.com/uploads/item/image/22649/fender-twin-tweed-xl.jpg", objectId=3, caption="I just added some new gear")
+  post3 = Post(musicianId=3, postType="Gear", mediaLink="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUb3gpJ5NjVCMB10lIFx0N368WLDh7J3oCEg&usqp=CAU", objectId=1, caption="I just added some new gear")
+  post4 = Post(musicianId=4, postType="Gear", mediaLink="https://i.pinimg.com/originals/b0/38/19/b03819e46507182b5afe684ce63921cb.jpg", objectId=7, caption="I just added some new gear")
+  post5 = Post(musicianId=5, postType="Text", objectId=5, caption="All we are saying is give peace a chance.")
+  post6 = Post(musicianId=6, postType="Image", mediaLink="https://wegroovybaby.s3.amazonaws.com/georgeandmaha.jpg", caption="Here I am with Maharishi! Meditation has helped me take my music to the next level")
+  post7 = Post(musicianId=7, postType="Image", mediaLink="https://wegroovybaby.s3.amazonaws.com/paulinstudio.jpg", objectId=5, caption="Tracking some bass. Trying to get something punchy. Anyone have any tips about compression?")
+  post8 = Post(musicianId=8, postType="Text", caption="I feel like I'm too busy writing history to read it")
+  post9 = Post(musicianId=9, postType="Image", mediaLink="https://wegroovybaby.s3.amazonaws.com/kevinshow.jpgg", caption="Had a great show last night. Was using the Rick. Great tone.")
+
+  db.session.add(post1)
+  db.session.add(post2)
+  db.session.add(post3)
+  db.session.add(post4)
+  db.session.add(post5)
+  db.session.add(post6)
+  db.session.add(post7)
+  db.session.add(post8)
+  db.session.add(post9)
 
   db.session.commit()

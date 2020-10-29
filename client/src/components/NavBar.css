@@ -1,6 +1,6 @@
 
 #bar {
-    background-image: linear-gradient(to bottom right, purple, blue, green, yellow, red);
+    background-image: linear-gradient(to bottom right,#00B8FF);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;

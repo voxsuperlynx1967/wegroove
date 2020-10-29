@@ -324,8 +324,8 @@ export default function UserView({ musician, followers, following }) {
         return (
             <div className="editprof">
               <EditIcon onClick={handleOpen} className="edit2">
-                Edit profile
               </EditIcon>
+              <span onClick={handleOpen} className="edit3"> Edit</span>
               <Modal
                     open={open}
                     onClose={handleClose}

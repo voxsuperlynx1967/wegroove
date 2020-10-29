@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -18,6 +19,7 @@ class Musician(db.Model):
   follows = db.relationship('Follow', backref='musicians', primaryjoin="or_(Musician.id==Follow.musicianId, Musician.id==Follow.followerId)", lazy=True)
   post = db.relationship('Post', backref='musicians', lazy=True)
   comment = db.relationship('Comment', backref='musicians', lazy=True)
+  like = db.relationship('Like', backref='musicians', lazy=True)
 
   def to_dict(self):
     return {
@@ -125,7 +127,11 @@ class Post(db.Model):
     mediaLink = db.Column(db.String(2000), nullable=True)
     objectId = db.Column(db.Integer, nullable=True)
     caption = db.Column(db.String(2000), nullable=True)
+    likeCount = db.Column(db.Integer, default=0)
+    commentCount = db.Column(db.Integer, default=0)
+    datePosted = db.Column(db.DateTime, default=datetime.now())
     comment = db.relationship('Comment', backref='posts', lazy=True)
+    like = db.relationship('Like', backref='posts', lazy=True)
 
     def to_dict(self):
         return {
@@ -134,16 +140,32 @@ class Post(db.Model):
         "mediaLink": self.mediaLink,
         "objectId": self.objectId,
         "caption": self.caption,
+        "likeCount": self.likeCount,
+        "commentCount": self.commentCount,
+        "datePosted": self.datePosted
     }
 
 class Comment(db.Model):
     __tablename__ = 'comments'
     postId = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key = True)
     musicianId = db.Column(db.Integer, db.ForeignKey('musicians.id'), primary_key = True)
+    dateCommented = db.Column(db.DateTime, default=datetime.now())
 
 
     def to_dict(self):
         return {
         "postId": self.postId,
         "musicianId": self.musicianId,
+    }
+
+class Like(db.Model):
+    __tablename__ = 'likes'
+    postId = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key = True)
+    musicianId = db.Column(db.Integer, db.ForeignKey('musicians.id'), primary_key = True)
+
+    def to_dict(self):
+        return {
+        "postId": self.postId,
+        "musicianId": self.musicianId,
+
     }

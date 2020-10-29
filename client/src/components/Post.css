@@ -1,0 +1,41 @@
+.formtitlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px 20px;
+    font-weight: bold;
+
+  }
+
+
+  .box {
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 0px 10px;
+  }
+  .postpic {
+    width: 100%;
+    height: 50%;
+  }
+
+  .taglist {
+      list-style-type: none;
+      display: flex;
+      font-size: 18px;
+      justify-content: flex-start;
+  }
+
+  .taglist li:hover {
+      cursor: pointer;
+      text-decoration: underline;
+
+  }
+  .taglist li {
+      padding: 5px;
+  }
+
+  .tags {
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }

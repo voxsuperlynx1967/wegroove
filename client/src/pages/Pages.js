@@ -16,6 +16,8 @@ import GearForm from './GearForm'
 
 import AttributeForm from './AttributeForm'
 
+import Feed from './Feed'
+
 
 
 export default function Pages() {
@@ -29,6 +31,7 @@ export default function Pages() {
         <Route path = "/browse/gear/all" component={Browse}/>
         <Route path ="/gear/new" component={GearForm}/>
         <Route path ="/gear/attributes" component={AttributeForm}/>
+        <Route path ="/feed/:id" component={Feed}/>
       </>
     );
   }
