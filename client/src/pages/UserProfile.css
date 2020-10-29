@@ -1,7 +1,7 @@
 .qgrid1 {
     position: absolute;
-    top: 25%;
-    left: 25%;
+    top: 10%;
+    left: 26%;
     border-radius: 5px;
 
 }
@@ -16,7 +16,7 @@
 
 .accorddiv {
     position: absolute;
-    top: 25%;
+    top: 9%;
     width: 25%;
 }
 #titlecontainer1 {

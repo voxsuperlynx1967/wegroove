@@ -81,7 +81,7 @@ export default function UserProfile() {
     return (
         <>
             <NavBar/>
-            <div className="banner"> Get your groove on.</div>
+            {/* <div className="banner"> Get your groove on.</div> */}
             <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid1">
                 <ThemeProvider theme={theme}>
                 <Grid item className="item1" key={profileUser.id}>

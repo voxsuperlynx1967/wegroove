@@ -11,6 +11,8 @@ import GrooveLogo from './GrooveLogo';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../store/auth"
 import { useHistory, NavLink } from "react-router-dom";
+import RadioIcon from '@material-ui/icons/Radio';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -146,6 +148,28 @@ export default function PrimarySearchAppBar() {
             {/* <Badge className ="icon2" badgeContent={17} color="secondary">
                 <NotificationsIcon />
             </Badge> */}
+            <div className="navicons">
+             <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <HomeIcon />
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <RadioIcon />
+            </IconButton>
+            </div>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -156,6 +180,7 @@ export default function PrimarySearchAppBar() {
             >
               <AccountCircle />
             </IconButton>
+
           </div>
         </Toolbar>
       </AppBar>

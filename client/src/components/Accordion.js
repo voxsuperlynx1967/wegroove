@@ -31,6 +31,7 @@ const AccordionSummary = withStyles({
   root: {
     backgroundColor: 'rgba(0, 0, 0, .03)',
     marginBottom: -1,
+    borderRadius: "10px",
     minHeight: 56,
     '&$expanded': {
       minHeight: 56,
@@ -52,7 +53,7 @@ const AccordionDetails = withStyles((theme) => ({
 }))(MuiAccordionDetails);
 
 export default function CustomizedAccordions() {
-  const [expanded, setExpanded] = React.useState('panel1');
+  const [expanded, setExpanded] = React.useState('');
 
   const history = useHistory();
 
@@ -69,24 +70,25 @@ export default function CustomizedAccordions() {
 
   return (
     <div>
+        <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <Typography className="cust">Feed</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+            <GroovyButton>See activity </GroovyButton>
+            {/* <GroovyButton> Browse by</GroovyButton> */}
+        </AccordionDetails>
+      </Accordion>
       <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography className="cust">Browse Gear</Typography>
+          <Typography className="cust">Gear</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <GroovyButton onClick={browseall}> Browse all</GroovyButton>
           {/* <GroovyButton onClick={browseby}>  Browse by</GroovyButton> */}
         </AccordionDetails>
       </Accordion>
-      {/* <Accordion square expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography className="cust">Browse Users</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-            <GroovyButton> Browse all </GroovyButton>
-            <GroovyButton> Browse by</GroovyButton>
-        </AccordionDetails>
-      </Accordion> */}
+
       {/* <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography className="cust">Browse Projects</Typography>

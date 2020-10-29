@@ -29,9 +29,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 7%;
+    width: 55%;
 }
 
 #navgroovy {
     cursor: pointer;
+}
+
+.navicons {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
 }
