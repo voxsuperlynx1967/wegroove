@@ -131,7 +131,7 @@ export default function AttributeForm() {
 
         <>
         <NavBar/>
-        <div className="banner"> Show off your gear, mate.</div>
+        <div className="banner">What condition is your gear in? What year is it from?</div>
         <div class="pagewrapper2">
         <Container
             id="formcontainer"
@@ -139,7 +139,7 @@ export default function AttributeForm() {
             fixed
             maxWidth="sm">
             <ThemeProvider theme={theme}>
-            <div className="header" id="secondh"> Let's get more specific</div>
+            <div className="header" id="secondh">Add attributes, then click finish!</div>
 
 
                 <form className="form2" id="secondform" onSubmit={handleAttribute}>

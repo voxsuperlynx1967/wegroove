@@ -100,7 +100,7 @@ export default function Browse() {
     return (
         <>
             <NavBar/>
-            <div className="banner"> Meet musicians in your area</div>
+            <div className="banner1"> Meet musicians in your area</div>
             <div className="radius">
               <form className="radform" onSubmit={handleRadiusSubmit}>
               <Select className="filtselect" labelId="label" id="select" value={filtz}

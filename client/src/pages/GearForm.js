@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@material-ui/core';
 import GrooveLogo from '../components/GrooveLogo';
-import SpecialButton from '../components/SpecialButton';
+import GroovyButton from '../components/GroovyButton';
 import './GearForm.css';
 import { makeStyles } from "@material-ui/core/styles";
 import SpecialTextField from '../components/SpecialTextField';
@@ -17,6 +17,7 @@ import { postGear } from '../store/gear';
 import { postAttribute } from '../store/attributes';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { createPost } from '../store/posts'
 
 
 
@@ -108,12 +109,12 @@ export default function GearForm() {
     const handleFileChange = e => {
         setFile(e.target.files[0]);
         setFilename(e.target.files[0].name)
+        handleSubmitz(e.target.files[0])
       }
 
 
 
-      const handleSubmitz = async e => {
-        e.preventDefault();
+      const handleSubmitz = async (file) => {
         const formData = new FormData();
         formData.append('file', file)
         formData.append('id', currentUserId)
@@ -125,7 +126,9 @@ export default function GearForm() {
             }
           });
           const link = await res.data
+          document.getElementById("addmepic").classList.add("postedpic2")
           setMediaLink(link)
+          document.getElementById("hideme").classList.add("hidden")
         //   setUploadedFile({ fileName, filePath })
         } catch (err) {
           if (err.response.status === 500) {
@@ -143,7 +146,10 @@ export default function GearForm() {
     const handleSubmit1 = (event) => {
         event.preventDefault()
         document.getElementById("firstform").remove();
+        const postType = "Gear"
+        const caption = `${name} just got added to my board`
         dispatch(postGear(name, gearTypeId, musicianId, mediaLink))
+        dispatch(createPost(musicianId, postType, mediaLink, caption))
         history.push('/gear/attributes')
 
         // document.getElementById("secondh").innerHTML = "Let's get more specific";
@@ -174,7 +180,7 @@ export default function GearForm() {
     return (
         <>
             <NavBar/>
-            <div className="banner"> Show off your gear, mate.</div>
+            <div className="banner"> Let's start out with some basic info about your gear.</div>
             <div class="pagewrapper2">
             <Container
                 id="formcontainer"
@@ -182,7 +188,7 @@ export default function GearForm() {
                 fixed
                 maxWidth="sm">
                 <ThemeProvider theme={theme}>
-                <div className="header" id="secondh"> Let's start out with some basic info</div>
+                <div className="header" id="secondh"> Add a name and a type</div>
                 <form className="form2" id="firstform" onSubmit={handleSubmit1}>
                     <div className="errors-container">
                                 <ul className="errors" id="sign-up-errors"></ul>
@@ -196,14 +202,14 @@ export default function GearForm() {
                         onChange={handleChange1}>
                             {options(gearTypes)}
                         </Select>
-                        <div className="formlabels">Upload a picture of your gear</div>
+                        <div className="formlabels">Then, upload a picture of your gear</div>
                         <div>
-                        <div className='upload-photo'>
+                        <img id="addmepic" src={mediaLink}/>
+                        <div id="hideme" className='upload-photo'>
                         <input type='file' className='upload-photo' id='customPhoto'
                             onChange={handleFileChange}
                         />
                         </div>
-                        <input type='button' onClick={handleSubmitz} value="Upload" className='uploadButton' />
                         </div>
 
                         {/* <SpecialTextField id="textfield2"
@@ -224,7 +230,7 @@ export default function GearForm() {
                         onChange={e => setlastName(e.target.value)}
                         /> */}
 
-                        <SpecialButton className="firstbutt" id="1submit">Start creating your gear</SpecialButton>
+                        <GroovyButton className="firstbutt" id="1submit">Create your gear!</GroovyButton>
 
                 </form>
 

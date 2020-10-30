@@ -1,27 +1,16 @@
-.qgrid11 {
+.qgridusers2 {
     position: absolute;
-    top: 10%;
-    left: 19%;
-    border-radius: 5px;
-
+    top: 27%;
+    left: 21%;
+    right: 25%;
 }
-
-
-
-.item21 {
-    width: 115%;
-}
-
-
-
-
-.accorddiv1 {
+.accorddiv2 {
     position: absolute;
     top: 9%;
     width: 25%;
 }
 
-.banner {
+.banner3 {
     display: flex;
     font-weight: bolder;
     font-size: 36px;
@@ -30,6 +19,25 @@
     justify-content: center;
     align-items: center;
     height: 100px;
-    background-image: url(https://64.media.tumblr.com/2f18d4e8bc54423b1e9a70cbc8de088f/tumblr_pl8i7cuNKu1uawsh4_1280.jpg);
-    background-size: cover;
+    position: absolute;
+    left: 21%;
+    top: 11%;
+    width: 72vw;
+    background-color: darkgrey;
+    border-radius: 5px;
+}
+
+.MuiSvgIcon-root.edit {
+    fill: white;
+    cursor: pointer;
+    margin-left: 1000%;
+}
+
+.attributes2 {
+   color: black;
+   font-family: "Helvetica Neue";
+   font-size: 20px;
+   font-weight: bold;
+   padding-bottom: 10px;
+   padding-top: 20px
 }

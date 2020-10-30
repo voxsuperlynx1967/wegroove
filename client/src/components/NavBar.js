@@ -78,6 +78,14 @@ export default function PrimarySearchAppBar() {
     setAnchorEl(event.currentTarget);
   };
 
+  const handlefeed = () => {
+    history.push("/feed")
+  }
+
+  const handlegear = () => {
+    history.push("/browse/gear/all")
+  }
+
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -127,7 +135,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton> */}
-          <NavLink to={`/users/${currentUser.id}`}>
+          <NavLink to={`/feed`}>
             <GrooveLogo id="navgroovy" />
           </NavLink>
           {/* <div className={classes.search}>
@@ -154,7 +162,7 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handlefeed}
               color="inherit"
             >
               <HomeIcon />
@@ -164,7 +172,7 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handlegear}
               color="inherit"
             >
               <RadioIcon />

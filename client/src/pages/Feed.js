@@ -23,10 +23,6 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import './Feed.css'
 
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
-
   function getModalStyle() {
     const top = 50
     const left = 50
@@ -95,10 +91,6 @@ export default function Feed() {
         dispatch(fetchPostsFollowing(following));
         following.pop()
 
-
-        // document.getElementById("secondh").innerHTML = "Let's get more specific";
-        // const sform = document.getElementById("secondform")
-        // sform.classList.remove("hidden")
     }
 
       const handleSubmitz = async (file) => {

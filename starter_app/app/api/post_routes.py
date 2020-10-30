@@ -3,6 +3,7 @@ from app.models import Post, Comment, Like, Musician, db
 from flask_jwt_extended import JWTManager, create_access_token
 import bcrypt
 from sqlalchemy.orm import joinedload, selectinload
+from sqlalchemy import desc
 
 
 post_routes = Blueprint('post', __name__)
@@ -49,21 +50,23 @@ def following():
           musicianId=item["musicianId"]
       else:
           musicianId=item["id"]
-      posts = Post.query.filter_by(musicianId=musicianId).options(selectinload('musicians')).all()
+      posts = Post.query.filter_by(musicianId=musicianId).options(selectinload('musicians')).order_by(Post.datePosted.desc()).all()
       for post in posts:
           post1 = post.to_dict()
           post1["firstName"] = post.musicians.firstName
           post1["lastName"] = post.musicians.lastName
+          post1["musicianmediaLink"] = post.musicians.mediaLink
           postlist.append(post1)
   return {"Posts": postlist}
 
 @post_routes.route('/<id>')
 def myposts(id):
     postlist = []
-    posts = Post.query.filter_by(musicianId=id).options(selectinload('musicians')).all()
+    posts = Post.query.filter_by(musicianId=id).options(selectinload('musicians')).order_by(Post.datePosted.desc()).all()
     for post in posts:
           post1 = post.to_dict()
           post1["firstName"] = post.musicians.firstName
           post1["lastName"] = post.musicians.lastName
+          post1["musicianmediaLink"] = post.musicians.mediaLink
           postlist.append(post1)
     return {"Posts": postlist}

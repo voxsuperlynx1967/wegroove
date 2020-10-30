@@ -11,6 +11,9 @@ import { useParams } from "react-router-dom";
 
 import { fetchUser } from '../store/user'
 import { fetchGear } from '../store/gear'
+import GearPanel from '../components/GearPanel.js'
+import AddCircle from '@material-ui/icons/AddCircle';
+import { NavLink } from 'react-router-dom';
 
 
 import './GearProfile.css'
@@ -50,6 +53,8 @@ const theme = createMuiTheme({
     },
   });
 
+
+
 export default function UserProfile() {
     let { id } = useParams();
     const dispatch = useDispatch();
@@ -65,23 +70,58 @@ export default function UserProfile() {
     const profileUser = useSelector(state => state.user)
     const profileGears = useSelector(state => state.gear)
 
+    const panels = ( gear ) => {
+        const list1 = []
+        debugger
+        for (let i=0; i < gear.length; i++) {
+                    list1.push(
+                        <Grid item className="gearpanel">
+                            <GearPanel gear={gear[i]}/>
+                        </Grid>
+                    )
 
+        }
+        if (list1.length === 0) {
+            console.log("hi")
+            // document.querySelectorAll(".MuiGrid-root.qgridusers.MuiGrid-container.MuiGrid-spacing-xs-4").classList.remove("qgridusers")
+            // document.getElementById("browsegrid").classList.add()
+            return (
+                <Grid item className="sorry">
+                    <span>We're so sorry, there's no gear here!</span>
+                </Grid>
+            )
+        } else {
+            return list1
+        }
+
+    }
     const currentUser = useSelector(state => state.auth.musician);
+
+    const edit = () => {
+    if (currentUser.id === profileUser.id) {
+        return (
+            <NavLink to="/gear/new" className="nav">
+                <AddCircle className="edit"/>
+            </NavLink>
+        )
+        }
+     }
     const currentUserToken = useSelector(state => state.auth.auth_token);
     if (!currentUser && !currentUserToken) return <Redirect to="/"/>;
     return (
         <>
             <NavBar/>
-            {/* <div className="banner"> Get your groove on.</div> */}
-            <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid11">
-                <ThemeProvider theme={theme}>
-                <Grid item className="item21" key={profileUser.id}>
-                   <UserAttributes id={id}/>
-                </Grid>
-                </ThemeProvider>
+            <div className="banner3">{`Check out ${profileUser.firstName}'s gear`}
+            {edit()}
+            </div>
+            <Grid id="geargrid" container align="center" direction="row" spacing={4} alignItems="stretch" className="qgridusers2">
+                   {/* <UserAttributes id={id}/> */}
+                   {panels(profileGears)}
+
+
 
             </Grid>
-            <div className="accorddiv1">
+            <div className="accorddiv2">
                 <CustomizedAccordions user={currentUser}/>
             </div>
 

@@ -1,3 +1,13 @@
+
+.panelimage {
+    height: 60vh;
+    width: 35vw;
+}
+
+.imageholder {
+    height: 60vh;
+    overflow-y: scroll;
+}
 .headerdiv {
     display: flex;
     align-items: center;

@@ -71,6 +71,10 @@ export default function CustomizedAccordions() {
     history.push(`/users/${profileUser.id}`)
   }
 
+  const alertfunc = () => {
+      alert('We are still working on building out this feature!')
+  }
+
   return (
     <div>
       <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -97,7 +101,7 @@ export default function CustomizedAccordions() {
           <Typography className="cust">Rooms</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <GroovyButton>See rooms </GroovyButton>
+            <GroovyButton onClick={alertfunc}> See rooms </GroovyButton>
             {/* <GroovyButton> Browse by</GroovyButton> */}
         </AccordionDetails>
       </Accordion>
@@ -107,7 +111,7 @@ export default function CustomizedAccordions() {
           <Typography className="cust">Projects</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <GroovyButton> See Projects</GroovyButton>
+            <GroovyButton onClick={alertfunc}>  See Projects</GroovyButton>
         </AccordionDetails>
       </Accordion>
     </div>

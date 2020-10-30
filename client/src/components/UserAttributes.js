@@ -83,7 +83,7 @@ export default function UserAttributes( id ) {
             <RadioIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText className="text" primary={`${profileUser.firstName}'s Gear`} secondary="Check it out" />
+        <ListItemText className="text" primary={`${profileUser.firstName}'s Gear`} secondary="Check it out!" />
         {edit()}
       </ListItem>
       <Gallery id={id}/>

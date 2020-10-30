@@ -17,7 +17,7 @@
 
   .MuiContainer-root {
     position: fixed;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -126,4 +126,10 @@
 
 #firstform {
     display: visible;
+}
+
+.postedpic2 {
+    width: 200px;
+    height: 200px;
+    margin: 10%;
 }
