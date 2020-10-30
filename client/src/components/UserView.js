@@ -20,13 +20,11 @@ import { NavLink } from 'react-router-dom';
 import { fetchFollows } from '../store/follow'
 
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
+
 
   function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
 
     return {
       top: `${top}%`,
@@ -155,13 +153,9 @@ export default function UserView({ musician, followers, following }) {
     setOpen2(false);
   };
 
-  const handleOpen4 = () => {
-    setOpen4(true);
-  };
-
-  const handleClose4 = () => {
-    setOpen4(false);
-  };
+  const alertfunc = () => {
+      alert("We are still working on building out this feature!")
+  }
 
   const handleChange1 = (event) => {
       setEmail(event.target.value)
@@ -263,15 +257,18 @@ export default function UserView({ musician, followers, following }) {
         for (let i = 0; i < followers.length; i++) {
             if (followers[i].followerId === currentUserId) {
                 return (
-                    <span onClick={unfollowmusician} id="checkme">Unfollow</span>
+                    <GroovyButton onClick={unfollowmusician} className="buttons" color="primary">
+                        <span id="checkme">Unfollow</span>
+                    </GroovyButton>
                 )
             }
 
         }
     }
     return (
-
-        <span onClick={followmusician} id="checkme">Follow</span>
+        <GroovyButton onClick={followmusician} className="buttons" color="primary">
+        <span id="checkme">Follow</span>
+        </GroovyButton>
     )
   }
 
@@ -324,7 +321,6 @@ export default function UserView({ musician, followers, following }) {
         return (
             <div className="editprof">
               <EditIcon onClick={handleOpen} className="edit2">
-                Edit profile
               </EditIcon>
               <Modal
                     open={open}
@@ -341,11 +337,9 @@ export default function UserView({ musician, followers, following }) {
       } else {
         return (
             <>
-            <GroovyButton className="buttons" color="primary">
-                 {followfunc()}
-            </GroovyButton>
+            {followfunc()}
 
-             <GroovyButton onClick={handleOpen4} className="buttons" color="primary">
+             <GroovyButton onClick={alertfunc} className="buttons" color="primary">
                 Start chat
             </GroovyButton>
             </>
@@ -356,13 +350,7 @@ export default function UserView({ musician, followers, following }) {
   return (
     <Card>
       <CardActionArea>
-        <CardMedia
-          className = "musicimage"
-          component="img"
-          alt="Musician"
-          image={musician.mediaLink}
-          title="Musician"
-        ></CardMedia>
+        <img className="musicimage" src={musician.mediaLink}/>
         <CardContent>
           <Typography className="musicianname">
             {musician.firstName}{" "}{musician.lastName}

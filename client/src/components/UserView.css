@@ -6,29 +6,43 @@
 .MuiTypography-root.musicianname {
     font-weight: bold;
     font-family: 'Fredoka One', cursive;
-    font-size: 30px;
-    color: white;
-    padding: 5%;
-    background-color: orange;
-    border-radius: 5px
+    font-size: 24px;
+    color: black;
+    padding: 1%;
 }
 /* .MuiCardContent-root {
     background-color: #00B8FF;
 } */
 
+/* .MuiPaper-root.MuiCard-root.MuiPaper-elevation1.MuiPaper-rounded {
+    height: 20%;
+} */
 
 .MuiTypography-root.musicianbio {
     font-family: 'Fredoka One';
     font-size: 18px;
     color: black;
     padding: 7%;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+.MuiButtonBase-root.MuiCardActionArea-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.MuiTypography-root.musicianname.MuiTypography-body1 {
+    display: flex;
+    justify-content: center;
 }
 
 .followFlex {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 100%;
+    width: 500px;
 
 }
 
@@ -38,6 +52,7 @@
     color: black;
     padding: 1%;
     cursor: pointer;
+    width: 100;
 }
 
 .MuiSvgIcon-root.edit {
@@ -45,6 +60,16 @@
 }
 
 .edit2 {
+    cursor: pointer;
+
+}
+
+.edit3 {
+    font-family: 'Fredoka One';
+    font-size: 16px;
+    color: black;
+    padding-left: 10%;
+    padding-top: 10%;
     cursor: pointer;
 }
 
@@ -69,9 +94,9 @@
 }
 
 
-.MuiCardMedia-root.musicimage.MuiCardMedia-media.MuiCardMedia-img {
-    margin: 10%;
-    width: 80%;
+.musicimage {
+    height: 250px;
+    margin-top: 10%;
 }
 
 .followlis {

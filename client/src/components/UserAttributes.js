@@ -29,6 +29,7 @@ export default function UserAttributes( id ) {
 
 
   const currentUser = useSelector(state => state.auth.musician);
+  const profileUser = useSelector(state => state.user);
   console.log(id.id)
   console.log(currentUser.id)
   const edit = () => {
@@ -82,7 +83,7 @@ export default function UserAttributes( id ) {
             <RadioIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText className="text" primary="Gear" secondary="Show off your gear" />
+        <ListItemText className="text" primary={`${profileUser.firstName}'s Gear`} secondary="Check it out!" />
         {edit()}
       </ListItem>
       <Gallery id={id}/>

@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { lightGreen } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
-import './UserPanel.css'
+import './GearPanel.css'
 import UserPanelGallery from './UserPanelGallery'
 import { useHistory, NavLink } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     height: "20%",
   },
   root: {
-    maxWidth: 345,
+    width: "100%",
   },
   media: {
     height: 0,
@@ -33,30 +33,42 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UserPanel( user ) {
+export default function UserPanel( gear ) {
   const history = useHistory();
   const classes = useStyles();
-  const usercard = user.user
+  const profgear = gear.gear
+  const attributes =  (gear) => {
+    let list2 = []
+    let atts = gear.attributes
+    for (let i=0; i<atts.length; i++) {
+        list2.push(
+            <div>
+                <span className="attributes2">{atts[i].tag}: {atts[i].value}</span>
+
+            </div>
+        )
+
+
+        }
+    return list2
+}
+
   return (
     <Card className={classes.root}>
       <div className="headerdiv">
-          <NavLink className="nope" to={`/users/${usercard.id}`}>
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            <img className="thumbnail" src={usercard.mediaLink}/>
-
-          </Avatar>
-          </NavLink>
-          <NavLink className="nope" to={`/users/${usercard.id}/gear`}>
-          {usercard.firstName}'s Board
-          </NavLink>
+          {profgear.name}
           {/* <IconButton aria-label="settings">
             <MusicNoteIcon />
           </IconButton> */}
 
 
         </div>
-      <UserPanelGallery user={usercard}/>
+        <div className="imageholder">
+            <img className="panelimage" src={profgear.mediaLink}/>
+            {attributes(profgear)}
+         </div>
       <CardContent>
+
       </CardContent>
       <CardActions className = {classes.fun} disableSpacing>
         <IconButton aria-label="add to favorites">

@@ -1,6 +1,6 @@
 
 #bar {
-    background-image: linear-gradient(to bottom right, purple, blue, green, yellow, red);
+    background-image: linear-gradient(to bottom right,#00B8FF);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
@@ -29,9 +29,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 7%;
+    width: 60%;
 }
 
 #navgroovy {
     cursor: pointer;
+}
+
+.navicons {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
 }

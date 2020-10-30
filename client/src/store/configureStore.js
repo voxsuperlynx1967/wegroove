@@ -8,6 +8,7 @@ import tags from './tags'
 import attributes from './attributes'
 import type from './type'
 import follow from './follow'
+import posts from './posts'
 
 
 const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     tags,
     attributes,
     type,
-    follow
+    follow,
+    posts
 });
 
 let storeEnhancer;

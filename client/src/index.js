@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import configureStore from './store/configureStore'
 import { Provider } from 'react-redux';
@@ -10,7 +9,9 @@ if (process.env.Node_ENV !== 'production') {
 }
 
 
+
 ReactDOM.render(
+
   <React.StrictMode>
      <Provider store={store}>
         <App />

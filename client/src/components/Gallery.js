@@ -7,9 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGear } from '../store/gear'
 import { List } from '@material-ui/core';
 import './Gallery.css'
+import { useHistory} from "react-router-dom";
+
+
+
 
 
 export default function Gallery( id ) {
+    const history = useHistory();
     console.log(id)
     const dispatch = useDispatch()
 
@@ -19,6 +24,7 @@ export default function Gallery( id ) {
 
     const profileGears = useSelector(state => state.gear)
     console.log(profileGears)
+
 
     const attributes =  (profileGear) => {
         let list2 = []

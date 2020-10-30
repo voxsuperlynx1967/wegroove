@@ -1,0 +1,43 @@
+.qgridusers2 {
+    position: absolute;
+    top: 27%;
+    left: 21%;
+    right: 25%;
+}
+.accorddiv2 {
+    position: absolute;
+    top: 9%;
+    width: 25%;
+}
+
+.banner3 {
+    display: flex;
+    font-weight: bolder;
+    font-size: 36px;
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    position: absolute;
+    left: 21%;
+    top: 11%;
+    width: 72vw;
+    background-color: darkgrey;
+    border-radius: 5px;
+}
+
+.MuiSvgIcon-root.edit {
+    fill: white;
+    cursor: pointer;
+    margin-left: 1000%;
+}
+
+.attributes2 {
+   color: black;
+   font-family: "Helvetica Neue";
+   font-size: 20px;
+   font-weight: bold;
+   padding-bottom: 10px;
+   padding-top: 20px
+}

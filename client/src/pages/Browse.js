@@ -100,7 +100,7 @@ export default function Browse() {
     return (
         <>
             <NavBar/>
-            <div className="banner"> Meet musicians in your area</div>
+            <div className="banner1"> Meet musicians in your area</div>
             <div className="radius">
               <form className="radform" onSubmit={handleRadiusSubmit}>
               <Select className="filtselect" labelId="label" id="select" value={filtz}
@@ -120,7 +120,7 @@ export default function Browse() {
                     <MenuItem value={50000}>Everyone</MenuItem>
 
                 </Select>
-                <TinyGroovyButton type="submit" className="radbutton"> Change search radius!</TinyGroovyButton>
+                <TinyGroovyButton type="submit" className="radbutton"> Filter</TinyGroovyButton>
               </form>
             </div>
 

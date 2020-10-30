@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import Musician, GearType, Gear, Tag, GearTypeTag, GearAttribute, Follow
+from app.models import Musician, GearType, Gear, Tag, GearTypeTag, GearAttribute, Follow, Post, Comment
 from app.api.user_routes import set_password
 
 hashed = set_password('password')
@@ -18,9 +18,9 @@ with app.app_context():
   John = Musician(firstName = 'John', lastName = 'Lennon', email = 'jlennon@gmail.com', hashed_password=hashed, latitude=42.863334,longitude=-71.369324, bio="Jai guru deva om", mediaLink="https://i.pinimg.com/originals/c1/61/50/c16150c3ef51107f16da504d552da3f0.jpg")
   George = Musician(firstName = 'George', lastName = 'Harrison', email = 'gharrison@gmail.com', hashed_password=hashed, latitude=42.271168,longitude=-71.425219, bio="Stop throwing jelly beans at me", mediaLink="https://i.pinimg.com/originals/5f/98/8f/5f988ff29a92dd2abda7daffc4f1e379.png")
   Paul = Musician(firstName = 'Paul', lastName = 'McCartney', email = 'paul@aa.io', hashed_password=hashed, latitude=42.271168,longitude=-71.425219, bio="Ob la di, ob-la-da, life goes on...", mediaLink="https://wegroovybaby.s3.amazonaws.com/pauline.jpg")
-  Kanye = Musician(firstName = 'Kanye', lastName='West', email='kanye@gmail.com',latitude=42.863334,longitude=-71.369324, bio="My greatest pain in life is that I will never be able to see myself perform live", mediaLink="https://wegroovybaby.s3.amazonaws.com/Kanye.jpeg")
-  Kevin = Musician(firstName = 'Kevin', lastName='Parker', email='kparker@gmail.com', latitude=42.3709, longitude=-72.5170, bio="The less I know the better, tbh", mediaLink="https://wegroovybaby.s3.amazonaws.com/KParker.jpg")
-  Dan = Musician(firstName = 'Dan', lastName='Snaith', email='dsnaith@gmail.com', latitude=38.9980431, longitude=-77.41605369999999, bio="Some call me Caribou, others a math genuis", mediaLink="https://wegroovybaby.s3.amazonaws.com/Daniel_Victor_Snaith_2005.jpg")
+  Kanye = Musician(firstName = 'Kanye', lastName='West', email='kanye@gmail.com', hashed_password=hashed, latitude=42.863334,longitude=-71.369324, bio="My greatest pain in life is that I will never be able to see myself perform live", mediaLink="https://wegroovybaby.s3.amazonaws.com/Kanye.jpeg")
+  Kevin = Musician(firstName = 'Kevin', lastName='Parker', email='kparker@gmail.com', hashed_password=hashed, latitude=42.3709, longitude=-72.5170, bio="The less I know the better, tbh", mediaLink="https://wegroovybaby.s3.amazonaws.com/KParker.jpg")
+  Dan = Musician(firstName = 'Dan', lastName='Snaith', email='dsnaith@gmail.com', hashed_password=hashed, latitude=38.9980431, longitude=-77.41605369999999, bio="Some call me Caribou, others a math genuis", mediaLink="https://wegroovybaby.s3.amazonaws.com/Daniel_Victor_Snaith_2005.jpg")
 
   db.session.add(Jimi)
   db.session.add(Neil)
@@ -267,10 +267,53 @@ with app.app_context():
   follow11 = Follow(musicianId=5, followerId=1)
   follow12 = Follow(musicianId=5, followerId=2)
   follow13 = Follow(musicianId=5, followerId=3)
-  follow15 = Follow(musicianId=5, followerId=6)
+  follow14 = Follow(musicianId=5, followerId=6)
   follow15 = Follow(musicianId=6, followerId=1)
   follow16 = Follow(musicianId=6, followerId=3)
   follow17 = Follow(musicianId=6, followerId=4)
   follow18 = Follow(musicianId=6, followerId=2)
 
-  db.session.add(Follow)
+  db.session.add(follow1)
+  db.session.add(follow2)
+  db.session.add(follow3)
+  db.session.add(follow4)
+  db.session.add(follow5)
+  db.session.add(follow6)
+  db.session.add(follow7)
+  db.session.add(follow8)
+  db.session.add(follow9)
+  db.session.add(follow10)
+  db.session.add(follow11)
+  db.session.add(follow12)
+  db.session.add(follow13)
+  db.session.add(follow14)
+  db.session.add(follow15)
+  db.session.add(follow16)
+  db.session.add(follow17)
+  db.session.add(follow18)
+
+  db.session.commit()
+
+
+
+  post1 = Post(musicianId=1, postType="Gear", mediaLink="https://www.livewiremusicnow.com/uploads/1/2/5/4/125400209/s304404583291342992_p91_i8_w833.png", objectId=5, caption="I just added some new gear")
+  post2 = Post(musicianId=2, postType="Gear", mediaLink="https://images.equipboard.com/uploads/item/image/22649/fender-twin-tweed-xl.jpg", objectId=3, caption="I just added some new gear")
+  post3 = Post(musicianId=3, postType="Gear", mediaLink="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUb3gpJ5NjVCMB10lIFx0N368WLDh7J3oCEg&usqp=CAU", objectId=1, caption="I just added some new gear")
+  post4 = Post(musicianId=4, postType="Gear", mediaLink="https://i.pinimg.com/originals/b0/38/19/b03819e46507182b5afe684ce63921cb.jpg", objectId=7, caption="I just added some new gear")
+  post5 = Post(musicianId=5, postType="Text", objectId=5, caption="All we are saying is give peace a chance.")
+  post6 = Post(musicianId=6, postType="Image", mediaLink="https://wegroovybaby.s3.amazonaws.com/georgeandmaha.jpg", caption="Here I am with Maharishi! Meditation has helped me take my music to the next level")
+  post7 = Post(musicianId=7, postType="Image", mediaLink="https://wegroovybaby.s3.amazonaws.com/paulinstudio.jpg", objectId=5, caption="Tracking some bass. Trying to get something punchy. Anyone have any tips about compression?")
+  post8 = Post(musicianId=8, postType="Text", caption="I feel like I'm too busy writing history to read it")
+  post9 = Post(musicianId=9, postType="Image", mediaLink="https://wegroovybaby.s3.amazonaws.com/kevinshow.jpgg", caption="Had a great show last night. Was using the Rick. Great tone.")
+
+  db.session.add(post1)
+  db.session.add(post2)
+  db.session.add(post3)
+  db.session.add(post4)
+  db.session.add(post5)
+  db.session.add(post6)
+  db.session.add(post7)
+  db.session.add(post8)
+  db.session.add(post9)
+
+  db.session.commit()

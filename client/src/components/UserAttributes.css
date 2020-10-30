@@ -21,10 +21,6 @@
 
 }
 
-.edit {
-    cursor: pointer;
-}
-
 .MuiTypography-root.MuiListItemText-primary.MuiTypography-body1 {
     font-family: 'Fredoka One', cursive;
     font-size: 18px;
@@ -45,14 +41,16 @@
 }
 
 .listy {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
-.MuiSvgIcon-root.edit {
-    fill: white;
-    cursor: pointer;
-}
+
 
 .nav {
     cursor: pointer;
+}
+
+.MuiListItem-root.five.MuiListItem-gutters {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }

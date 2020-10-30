@@ -3,9 +3,13 @@
     font-size: 18px;
     font-weight:bold;
     color: white;
-    padding: 2%;
+    /* padding: 2%; */
 }
 
 .MuiButtonBase-root.MuiAccordionSummary-root {
     background-color: #00B8FF;
+}
+
+.MuiPaper-root.MuiAccordion-root.MuiPaper-elevation1 {
+    background-color: #cae6f0;
 }
