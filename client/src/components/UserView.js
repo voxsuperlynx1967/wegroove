@@ -325,7 +325,6 @@ export default function UserView({ musician, followers, following }) {
             <div className="editprof">
               <EditIcon onClick={handleOpen} className="edit2">
               </EditIcon>
-              <span onClick={handleOpen} className="edit3"> Edit</span>
               <Modal
                     open={open}
                     onClose={handleClose}
@@ -356,13 +355,7 @@ export default function UserView({ musician, followers, following }) {
   return (
     <Card>
       <CardActionArea>
-        <CardMedia
-          className = "musicimage"
-          component="img"
-          alt="Musician"
-          image={musician.mediaLink}
-          title="Musician"
-        ></CardMedia>
+        <img className="musicimage" src={musician.mediaLink}/>
         <CardContent>
           <Typography className="musicianname">
             {musician.firstName}{" "}{musician.lastName}

@@ -9,7 +9,7 @@
 
 
   .box {
-    width: 50%;
+    width: 100%;
     background-color: white;
     border-radius: 5px;
     margin: 10px 0px 10px;
@@ -19,23 +19,23 @@
     height: 50%;
   }
 
-  .taglist {
-      list-style-type: none;
-      display: flex;
-      font-size: 18px;
-      justify-content: flex-start;
+
+  .caption {
+      padding-top: 5%;
+      padding-bottom: 5%;
+      padding-right: 15%;
+      padding-left: 15%;
+      font-family: 'Fredoka One', cursive;
+      color: black;
+      font-size: 24px;
   }
 
-  .taglist li:hover {
-      cursor: pointer;
-      text-decoration: underline;
-
-  }
-  .taglist li {
-      padding: 5px;
+  .MuiSvgIcon-root.heart {
+      margin: 5%;
   }
 
-  .tags {
-      padding-top: 20px;
-      padding-bottom: 20px;
+  .usersname {
+    font-family: 'Fredoka One', cursive;
+    color: black;
+    font-size: 20px;
   }

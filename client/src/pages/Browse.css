@@ -68,3 +68,7 @@
     font-family: 'Fredoka One', cursive;
     margin-left: 10px;
 }
+
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiInput-input {
+    background: #cae6f0;
+}

@@ -1,0 +1,63 @@
+.feeddiv {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    width: 50%;
+    margin-bottom: 10%;
+}
+
+/* .pagewrapper2 {
+    background-image: linear-gradient(to bottom right,#8bd7f3, white);
+    width: 100%;
+    position: absolute;
+    height: 500%;
+} */
+
+#posticon {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    margin: 2%;
+  }
+
+  .makepost {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .formlabels2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    color: black;
+    padding: 5px;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formheader2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: black;
+    padding: 10px;
+}
+
+.hidden {
+    display: none
+}
+
+
+.postedpic {
+    width: 400px;
+    height: 300px;
+    margin: 10%;
+}

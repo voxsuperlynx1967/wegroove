@@ -45,7 +45,7 @@
 }
 
 .listy {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .MuiSvgIcon-root.edit {
@@ -55,4 +55,9 @@
 
 .nav {
     cursor: pointer;
+}
+
+.MuiListItem-root.five.MuiListItem-gutters {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }

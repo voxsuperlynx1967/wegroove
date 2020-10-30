@@ -132,6 +132,7 @@ class Post(db.Model):
     datePosted = db.Column(db.DateTime, default=datetime.now())
     comment = db.relationship('Comment', backref='posts', lazy=True)
     like = db.relationship('Like', backref='posts', lazy=True)
+    musician = db.relationship('Musician', backref='posts', lazy=True)
 
     def to_dict(self):
         return {

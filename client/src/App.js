@@ -3,7 +3,9 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import Pages from './pages/Pages';
 import { setUser } from './store/auth';
 import { useDispatch } from 'react-redux';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, isMuiElement } from '@material-ui/core';
+
+
 
 
 
@@ -30,11 +32,13 @@ function App() {
   return (
 
     <>
+
       <CssBaseline>
         <BrowserRouter>
           <Pages/>
         </BrowserRouter>
       </CssBaseline>
+
     </>
   );
 }

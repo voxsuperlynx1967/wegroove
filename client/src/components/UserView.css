@@ -6,11 +6,9 @@
 .MuiTypography-root.musicianname {
     font-weight: bold;
     font-family: 'Fredoka One', cursive;
-    font-size: 30px;
-    color: white;
-    padding: 5%;
-    background-color: orange;
-    border-radius: 5px
+    font-size: 24px;
+    color: black;
+    padding: 1%;
 }
 /* .MuiCardContent-root {
     background-color: #00B8FF;
@@ -82,9 +80,9 @@
 }
 
 
-.MuiCardMedia-root.musicimage.MuiCardMedia-media.MuiCardMedia-img {
-    margin: 10%;
-    width: 80%;
+.musicimage {
+    height: 250px;
+    margin-top: 10%;
 }
 
 .followlis {

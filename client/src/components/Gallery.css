@@ -1,12 +1,12 @@
 
 
 .containerguy {
-    background-color: lightgrey;
+    background-color: darkgrey;
     font-family: 'Fredoka One', cursive;
     font-size: 30px;
     padding: 30px;
     border-radius: 5px;
-    height: 75vh;
+    height: 100vh;
     overflow-y: scroll;
 }
 

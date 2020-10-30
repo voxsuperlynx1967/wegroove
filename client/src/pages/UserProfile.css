@@ -1,18 +1,27 @@
 .qgrid1 {
     position: absolute;
     top: 10%;
-    left: 26%;
+    left: 19%;
+    border-radius: 5px;
+
+}
+
+.qgrid333 {
+    position: absolute;
+    top: 94%;
+    left: 19%;
     border-radius: 5px;
 
 }
 
 .item1 {
-    width: 100%;
+    width: 115%;
 }
 
 .item2 {
-    width: 100%;
+    width: 115%;
 }
+
 
 .accorddiv {
     position: absolute;

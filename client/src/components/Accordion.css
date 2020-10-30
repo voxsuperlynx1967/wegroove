@@ -9,3 +9,7 @@
 .MuiButtonBase-root.MuiAccordionSummary-root {
     background-color: #00B8FF;
 }
+
+.MuiPaper-root.MuiAccordion-root.MuiPaper-elevation1 {
+    background-color: #cae6f0;
+}
