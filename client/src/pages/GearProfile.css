@@ -1,4 +1,4 @@
-.qgrid1 {
+.qgrid11 {
     position: absolute;
     top: 10%;
     left: 19%;
@@ -6,40 +6,19 @@
 
 }
 
-.qgrid333 {
-    position: absolute;
-    top: 100%;
-    left: 19%;
-    border-radius: 5px;
 
-}
 
-.item1 {
-    width: 115%;
-}
-
-.item2 {
+.item21 {
     width: 115%;
 }
 
 
 
 
-.accorddiv {
+.accorddiv1 {
     position: absolute;
     top: 9%;
     width: 25%;
-}
-#titlecontainer1 {
-    display: flex;
-    justify-content: center;
-}
-#title1 {
-    position: absolute;
-    top: 15%;
-    font: 40px "Helvetica Neue";
-    font-weight: bold;
-    color: skyblue;
 }
 
 .banner {

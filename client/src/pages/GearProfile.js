@@ -13,7 +13,7 @@ import { fetchUser } from '../store/user'
 import { fetchGear } from '../store/gear'
 
 
-import './UserProfile.css'
+import './GearProfile.css'
 
 
 const theme = createMuiTheme({
@@ -73,15 +73,15 @@ export default function UserProfile() {
         <>
             <NavBar/>
             {/* <div className="banner"> Get your groove on.</div> */}
-            <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid1">
+            <Grid container align="center" direction="column" spacing={0} alignItems="stretch" className="qgrid11">
                 <ThemeProvider theme={theme}>
-                <Grid item className="item2" key={profileUser.id}>
+                <Grid item className="item21" key={profileUser.id}>
                    <UserAttributes id={id}/>
                 </Grid>
                 </ThemeProvider>
 
             </Grid>
-            <div className="accorddiv">
+            <div className="accorddiv1">
                 <CustomizedAccordions user={currentUser}/>
             </div>
 

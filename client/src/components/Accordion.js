@@ -6,6 +6,8 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import GroovyButton from './GroovyButton';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import './Accordion.css'
 
 
@@ -56,16 +58,17 @@ export default function CustomizedAccordions() {
   const [expanded, setExpanded] = React.useState('');
 
   const history = useHistory();
+  const profileUser = useSelector(state => state.user);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-  const browseall = () => {
-    history.push("/browse/gear/all")
+  const gearpush = () => {
+    history.push(`/users/${profileUser.id}/gear`)
   }
 
-  const browseby = () => {
-    history.push("/browse/gear/by")
+  const profilepush = () => {
+    history.push(`/users/${profileUser.id}`)
   }
 
   return (
@@ -75,7 +78,8 @@ export default function CustomizedAccordions() {
           <Typography className="cust">Profile</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <GroovyButton onClick={browseall}> See profile</GroovyButton>
+
+          <GroovyButton onClick={profilepush}> See profile</GroovyButton>
           {/* <GroovyButton onClick={browseby}>  Browse by</GroovyButton> */}
         </AccordionDetails>
       </Accordion>
@@ -84,12 +88,12 @@ export default function CustomizedAccordions() {
           <Typography className="cust">Gear</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <GroovyButton onClick={browseall}> Browse all</GroovyButton>
+          <GroovyButton onClick={gearpush}> See gear</GroovyButton>
           {/* <GroovyButton onClick={browseby}>  Browse by</GroovyButton> */}
         </AccordionDetails>
       </Accordion>
-      <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel2')}>
-        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+      <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography className="cust">Rooms</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -98,8 +102,8 @@ export default function CustomizedAccordions() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion square expanded={expanded === 'panel4'} onChange={handleChange('panel3')}>
-        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+      <Accordion square expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+        <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Typography className="cust">Projects</Typography>
         </AccordionSummary>
         <AccordionDetails>
