@@ -57,3 +57,12 @@
     text-decoration: none;
     color: black;
 }
+
+.MuiSvgIcon-root.heart {
+    cursor: pointer;
+
+}
+
+.hidden {
+    display: none;
+}

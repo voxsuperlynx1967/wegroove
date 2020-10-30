@@ -6,20 +6,23 @@
 
 }
 
-.qgrid333 {
+/* .qgrid333 {
     position: absolute;
     top: 97%;
     left: 19%;
     border-radius: 5px;
 
-}
+} */
 
 .item1 {
     width: 115%;
+    padding-bottom: 2%;
+    padding-top: 1%;
 }
 
 .item2 {
     width: 115%;
+    padding-bottom: 1%;
 }
 
 
@@ -54,3 +57,11 @@
     background-image: url(https://64.media.tumblr.com/2f18d4e8bc54423b1e9a70cbc8de088f/tumblr_pl8i7cuNKu1uawsh4_1280.jpg);
     background-size: cover;
 }
+.makepost2 {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 5px;
+  }

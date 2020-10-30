@@ -18,9 +18,39 @@ import { fetchGear } from '../store/gear'
 import { fetchFollows } from '../store/follow'
 import { fetchPosts } from '../store/posts'
 import Post from '../components/Post'
+import { createPost } from '../store/posts'
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import ChatIcon from '@material-ui/icons/Chat';
+import { Modal } from '@material-ui/core';
+import axios from 'axios';
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import GroovyButton from '../components/GroovyButton';
+
 
 
 import './UserProfile.css'
+
+function getModalStyle() {
+    const top = 50
+    const left = 50
+
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 600,
+      backgroundColor: 'white',
+      borderRadius: '5px',
+      padding: theme.spacing(2, 4, 3),
+    },
+  }));
+
 
 
 const theme = createMuiTheme({
@@ -54,12 +84,33 @@ const theme = createMuiTheme({
             borderRadius: "5px",
         }
     },
+    inputMultiline: {
+        background: "white",
+        font: "15px Helvetica Neue",
+        paddingTop: "10px",
+        paddingBottom: "20px",
+        paddingLeft: "10px",
+        paddingRight: "10px",
+        disableUnderline: "true",
+
+    },
     },
   });
 
 export default function UserProfile() {
-    let { id } = useParams();
+    const classes = useStyles();
+    const [caption, setCaption] = useState('')
+    const [postType, setPostType] = useState('')
+    const [filename, setFilename] = useState('Choose File');
+    const [modalStyle] = React.useState(getModalStyle);
+    const [mediaLink, setMediaLink] = useState('')
+    const currentUser = useSelector(state => state.auth.musician);
+    const currentUserId = currentUser.id
+    const musicianId = currentUserId
+    const [open, setOpen] = useState(false);
+    const [open1, setOpen1] = useState(false);
     const dispatch = useDispatch();
+    let { id } = useParams();
     useEffect(() => {
         dispatch(fetchUser(id));
         debugger
@@ -76,7 +127,26 @@ export default function UserProfile() {
         dispatch(fetchPosts(id));
     }, [dispatch, id]);
 
+    const handleOpen = () => {
 
+        setOpen(true);
+        setPostType('Text')
+      };
+
+      const handleClose = () => {
+        setOpen(false);
+        setPostType('')
+      };
+
+      const handleOpen1 = () => {
+        setOpen1(true);
+        setPostType('Image')
+      };
+
+      const handleClose1 = () => {
+        setOpen1(false);
+        setPostType('')
+      };
     const profileUser = useSelector(state => state.user)
     const profileGears = useSelector(state => state.gear)
     const follow = useSelector(state => state.follow)
@@ -93,9 +163,121 @@ export default function UserProfile() {
         return list1
     }
 
+    const displaypost = () => {
+        if (currentUserId === profileUser.id) {
+            return (
+                <Grid item className="item2">
+                    <div className="makepost2">
+                        <ChatIcon onClick={handleOpen} id="posticon"/>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                        >
+                            {body}
+                        </Modal>
+                        <CameraAltIcon onClick={handleOpen1} id="posticon"/>
+                        <Modal
+                            open={open1}
+                            onClose={handleClose1}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                        >
+                            {body2}
+                        </Modal>
 
-    const currentUser = useSelector(state => state.auth.musician);
+                    </div>
+                </Grid>
+
+            )
+        }
+    }
     const currentUserToken = useSelector(state => state.auth.auth_token);
+    const handleFileChange = e => {
+        const file = e.target.files[0];
+        setFilename(e.target.files[0].name)
+        handleSubmitz(file)
+      }
+
+      const handleSubmit1 = (event) => {
+        dispatch(createPost(musicianId, postType, mediaLink, caption))
+        dispatch(fetchPosts(id));
+
+
+    }
+
+      const handleSubmitz = async (file) => {
+        console.log(file)
+        const formData = new FormData();
+        formData.append('file', file)
+        formData.append('id', currentUserId)
+
+        try {
+          const res = await axios.post('/api/photo/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+          const link = await res.data
+          document.getElementById("addmepic").classList.add("postedpic")
+          setMediaLink(link)
+          document.getElementById("hideme").classList.add("hidden")
+        //   setUploadedFile({ fileName, filePath })
+        } catch (err) {
+          if (err.response.status === 500) {
+            console.log('There was a problem with the server')
+          } else {
+            console.log(err.response.data.message)
+          }
+        }
+      }
+    const body = (
+        <div style={modalStyle} className={classes.paper}>
+          <div className="formheaderbox"><div className="formheader2">What's on your mind?</div></div>
+          <form className="postform" onSubmit={handleSubmit1}>
+            <div className="errors-container">
+              <ul className="errors" id="sign-up-errors"></ul>
+            </div>
+            <div className ="fields">
+            <SpecialTextField
+            className="thoughts"
+            multiline
+            onChange={e => setCaption(e.target.value)}>
+
+            </SpecialTextField>
+            <GroovyButton className="superspecialbutton"> Post</GroovyButton>
+            </div>
+
+
+          </form>
+        </div>
+      );
+
+      const body2 = (
+        <div style={modalStyle} className={classes.paper}>
+          <div className="formheaderbox"><div className="formheader2">Post a picture!</div></div>
+          <form className="postform" onSubmit={handleSubmit1}>
+            <div className="errors-container">
+              <ul className="errors" id="sign-up-errors"></ul>
+            </div>
+            <div className ="fields">
+            <img id="addmepic" src={mediaLink}/>
+            <div id ="hideme" className='upload-photo'>
+              <input type='file' className='upload-photo' id='customPhoto'
+                onChange={handleFileChange}
+              />
+            </div>
+            <SpecialTextField
+            placeholder="Add a caption!" onChange={e => setCaption(e.target.value)}>
+            </SpecialTextField>
+            <GroovyButton className="superspecialbutton">Post</GroovyButton>
+            </div>
+
+
+          </form>
+        </div>
+      );
     if (!currentUser && !currentUserToken) return <Redirect to="/"/>;
     return (
         <>
@@ -106,7 +288,8 @@ export default function UserProfile() {
                 <Grid item className="item1" key={profileUser.id}>
                     <UserView key={profileUser.id} musician={profileUser} followers={follow.Followers ? follow.Followers: []} following={follow.Following ? follow.Following : []}/>
                 </Grid>
-                <Grid item className="item2">
+                {displaypost()}
+                <Grid item className="item3">
                         {feedfunc()}
                 </Grid>
 

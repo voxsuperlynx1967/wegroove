@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import './Post.css'
 import { Avatar } from '@material-ui/core'
 import { lightGreen } from "@material-ui/core/colors";
@@ -17,6 +18,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Post({ post }) {
+
+  const like = (e) => {
+      document.getElementById(e.target.id).classList.add("hidden")
+      document.getElementById("heart2").classList.remove("hidden")
+  }
+
+  const renderimage = () => {
+      if (post.mediaLink) {
+        return (
+            <img className="postpic" src={post.mediaLink} />
+        )
+      }
+  }
 
   const classes = useStyles();
   return (
@@ -42,13 +56,13 @@ function Post({ post }) {
           {/* <MoreHorizIcon /> */}
         </div>
         <div>
-          <img className="postpic" src={post.mediaLink} />
+            {renderimage()}
         </div>
         <div className="caption">
             {post.caption}
         </div>
-        <div className="bottombar">
-          <FavoriteBorderIcon className="heart"/>
+        <div className="bottombarheart">
+          <FavoriteBorderIcon onClick={like} className="heart"/>
         </div>
       </div>
     </div>
