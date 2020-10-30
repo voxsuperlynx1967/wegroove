@@ -50,7 +50,7 @@ def following():
           musicianId=item["musicianId"]
       else:
           musicianId=item["id"]
-      posts = Post.query.filter_by(musicianId=musicianId).options(selectinload('musicians')).order_by(Post.datePosted.desc()).all()
+      posts = Post.query.filter_by(musicianId=musicianId).order_by(Post.datePosted.desc()).options(selectinload('musicians')).all()
       for post in posts:
           post1 = post.to_dict()
           post1["firstName"] = post.musicians.firstName
@@ -62,7 +62,7 @@ def following():
 @post_routes.route('/<id>')
 def myposts(id):
     postlist = []
-    posts = Post.query.filter_by(musicianId=id).options(selectinload('musicians')).order_by(Post.datePosted.desc()).all()
+    posts = Post.query.filter_by(musicianId=id).order_by(Post.datePosted.desc()).options(selectinload('musicians')).all()
     for post in posts:
           post1 = post.to_dict()
           post1["firstName"] = post.musicians.firstName

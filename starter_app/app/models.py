@@ -136,6 +136,7 @@ class Post(db.Model):
 
     def to_dict(self):
         return {
+        "id": self.id,
         "musicianId": self.musicianId,
         "postType": self.postType,
         "mediaLink": self.mediaLink,
