@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     color: colors.text,
     padding: "10px",
     font: "15px Helvetica Neue",
-    width: "60%",
+    width: "62%",
     backgroundColor: colors.background,
     "&:hover": {
       backgroundColor: colors.background

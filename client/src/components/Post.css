@@ -61,8 +61,13 @@
 .MuiSvgIcon-root.heart {
     cursor: pointer;
 
+
 }
 
-.hidden {
-    display: none;
+#liked {
+    color: red;
+}
+
+#notliked {
+    color: black;
 }

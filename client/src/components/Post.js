@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -8,6 +8,7 @@ import './Post.css'
 import { Avatar } from '@material-ui/core'
 import { lightGreen } from "@material-ui/core/colors";
 import { NavLink } from 'react-router-dom'
+import { fetchLikes } from '../store/like'
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -17,11 +18,56 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function Post({ post }) {
+export default function Post({ post }) {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.auth.musician);
+  const currentUserId = currentUser.id
+  const postId = post.id
+  console.log(postId)
 
-  const like = (e) => {
-      document.getElementById(e.target.id).classList.add("hidden")
-      document.getElementById("heart2").classList.remove("hidden")
+  const likes = useSelector(state => state.like)
+  const likerender = () => {
+      if (likes) {
+        for (let i = 0; i < likes.length; i++) {
+            if (likes[i].postId === postId) {
+                return (
+                <FavoriteIcon onClick={unlike} id="liked" className="heart"/>
+                )
+
+            }
+        }
+
+      }
+
+      return (
+        <FavoriteBorderIcon onClick={like} id="unliked" className="heart"/>
+      )
+
+
+  }
+
+  const like = async () => {
+    const res = await fetch(`/api/like/${currentUserId}`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ currentUserId, postId })
+
+    });
+    dispatch(fetchLikes(currentUserId));
+  }
+
+  const unlike = async () => {
+    const res = await fetch(`/api/like/${currentUserId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ currentUserId, postId })
+
+    });
+    dispatch(fetchLikes(currentUserId));
   }
 
   const renderimage = () => {
@@ -62,11 +108,9 @@ function Post({ post }) {
             {post.caption}
         </div>
         <div className="bottombarheart">
-          <FavoriteBorderIcon onClick={like} className="heart"/>
+            {likerender()}
         </div>
       </div>
     </div>
   )
 }
-
-export default Post;
