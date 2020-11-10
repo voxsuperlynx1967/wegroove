@@ -80,13 +80,9 @@ function SignupPage() {
         setLatitude(lat)
         setLongitude(lng)
     }
-    const handleAddressChange = (e) => {
-
-        setAddress(e.target.value)
-
-    }
 
     const handleAddressInput = async (e) => {
+        setAddress(e.target.value)
         let search2 = e.target.value
         console.log(search2)
         if (search2) {
@@ -101,7 +97,7 @@ function SignupPage() {
         const nicelist = predictions.map(prediction => prediction.description)
         const small = nicelist.slice(0,3)
         setOptions(small)
-        setDisplay(!display)
+        setDisplay(true)
 
     }
 
@@ -174,8 +170,8 @@ function SignupPage() {
                 <SpecialTextField id="textfield4"
                     value={address}
                     placeholder="Enter address..."
-                    onChange={handleAddressChange}
-                    onInput ={handleAddressInput}
+                    onChange={handleAddressInput}
+                    // onInput ={handleAddressChange}
                         />
                 {display && (
                 <div ref={wrapperRef} className="autoContainer">
