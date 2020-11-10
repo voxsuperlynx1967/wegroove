@@ -84,7 +84,7 @@ function SignupPage() {
     const handleAddressInput = async (e) => {
         setAddress(e.target.value)
         let search2 = e.target.value
-        console.log(search2)
+        setAddress(e.target.value)
         if (search2) {
             if (search2.includes(" ")) {
                 const searchval = search2.split(" ")
@@ -171,7 +171,6 @@ function SignupPage() {
                     value={address}
                     placeholder="Enter address..."
                     onChange={handleAddressInput}
-                    // onInput ={handleAddressChange}
                         />
                 {display && (
                 <div ref={wrapperRef} className="autoContainer">
@@ -180,10 +179,17 @@ function SignupPage() {
                             <div>{v}</div>
                         </div>
                         })}
+                        <div className="option2" key={4}>
+                            <div>
+                              <img src="https://wegroovybaby.s3.amazonaws.com/googlemapsapi.png"></img>
+                            </div>
+                        </div>
                         </div>
 
                     )}
 
+
+            <span></span>
             <SpecialButton
             className="firstbutt">Sign up</SpecialButton>
 
