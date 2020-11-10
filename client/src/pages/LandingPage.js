@@ -14,7 +14,8 @@ const useStyles = makeStyles({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      position: "absolute"
+      position: "absolute",
+      top: "45%",
 
     },
     exploreIcon: {

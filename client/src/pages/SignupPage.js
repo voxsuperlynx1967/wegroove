@@ -29,6 +29,8 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    position: "absolute",
+    top: "45%",
   },
   exploreIcon: {
     color: "white",
@@ -80,6 +82,7 @@ function SignupPage() {
     }
 
     const handleAddressInput = async (e) => {
+        setAddress(e.target.value)
         let search2 = e.target.value
         setAddress(e.target.value)
         if (search2) {
@@ -120,7 +123,7 @@ function SignupPage() {
 
   }
 
-  if (currentUser || currentUserToken ) return <Redirect to={`/users/${currentUser.id}`} />;
+  if (currentUser || currentUserToken ) return <Redirect to={`/feed`} />;
   return (
     <div class="pagewrapper">
       <Container

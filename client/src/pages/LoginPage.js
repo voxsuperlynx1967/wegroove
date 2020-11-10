@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    top: "50%",
   },
 })
 
@@ -50,7 +51,7 @@ function LoginPage() {
         dispatch(login("javier@aa.io", "password"));
     }
 
-    if (currentUser || currentUserToken) return <Redirect to={`/users/${currentUser.id}`} />;
+    if (currentUser || currentUserToken) return <Redirect to={`/feed`} />;
   return (
     <>
       <div class="pagewrapper">

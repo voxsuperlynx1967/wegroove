@@ -70,9 +70,9 @@ export default function Browse() {
             // document.querySelectorAll(".MuiGrid-root.qgridusers.MuiGrid-container.MuiGrid-spacing-xs-4").classList.remove("qgridusers")
             // document.getElementById("browsegrid").classList.add()
             return (
-                <Grid item className="sorry">
-                    <span>We're so sorry, we can't find any musicians in your area!</span>
-                </Grid>
+                // <Grid item className="sorry">
+                    <span className="sorry">We're so sorry, we can't find any musicians in your area!</span>
+                /* </Grid> */
             )
         } else {
             return list1

@@ -19,6 +19,7 @@ import { Modal } from '@material-ui/core';
 import axios from 'axios';
 import GroovyButton from '../components/GroovyButton'
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import { fetchLikes } from '../store/like'
 
 import './Feed.css'
 
@@ -176,7 +177,9 @@ export default function Feed() {
 
     const following = follow.Following ? follow.Following : []
 
-
+    useEffect(() => {
+        dispatch(fetchLikes(currentUserId));
+      }, [dispatch, currentUserId]);
     useEffect(() => {
         following.push(currentUser)
         dispatch(fetchPostsFollowing(following));
