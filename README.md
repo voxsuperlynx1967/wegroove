@@ -61,5 +61,5 @@ This query utilizes the latitude and longitude returned from the Google Maps Geo
 | Get            | /gear/attributes  |  Gear attribute form |
 | Post           | /gear/attributes  |  Add a gear attribute |
 | Get            | /browse/gear/all  |  View all gear in your area  |
-| Put            | /jobs             |  Filter gear in your area by mile radius and gear type |
+| Put            | /browse/gear/all  |  Filter gear in your area by mile radius and gear type |
 
