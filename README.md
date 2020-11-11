@@ -2,7 +2,7 @@
 
 Welcome to the WeGroovy Wiki!
 
-This is a full-stack web application built using React, Redux, Flask, SQLAlchemy, AWS, Google Maps API, Python, and Javascript.
+This is a full-stack web application built using React, Redux, Flask, SQLAlchemy, AWS, Google Maps API, Python, Material-UI, and Javascript.
 
 This application is currently hosted on Heroku! [WeGroovy](https://wegroovy.herokuapp.com/)
 
