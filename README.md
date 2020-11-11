@@ -38,22 +38,26 @@ This query utilizes the latitude and longitude returned from the Google Maps Geo
 
 <br />
 
-<!-- ## RESTful EndPoints: -->
+## EndPoints:
 
-<!-- | Method         | Path              | Purpose              |
+| Method         | Frontend Path     | Purpose              |
 |---             |---                |---                   |
-| Get            | /                 |  Home Page           |
-| Post           | /users            |  Create User Account |
-| Get            | /users/:id        |  Access User Account |
-| Get            | /users/sign-up    |  Create User Form    |
-| Get            | /users/sign-in    |  User Login Form     |
-| Post           | /users/sign-in    |  Authenticate User   |
-| Get            | /users/:id/update |  Form to Update Account Details |
-| Get            | /users/:id/jobs   |  View a list of past/present jobs |
-| Patch          | /users/:id        |  Update User Account |
-| Delete         | /users/:id        |  Delete User Account |
-| Get            | /jobTypes         |  Show All job Types  |
-| Get            | /jobTypes/:id     |  Show All taskers for job Type |
-| Get            | /jobTypes/:id/:taskerId |  Show details about tasker  |
-| Post           | /jobs             |  Create new job (user & tasker)  | -->
+| Get            | /                 |  Home page           |
+| Get            | /signup           |  User signup form    |
+| Post           | /signup           |  Create user account |
+| Get            | /login            |  User login form     |
+| Post           | /login            |  Authenticate user   |
+| Get            | /feed             |  View posts/likes/following and the post form |
+| Post           | /feed             |  Create a text or image post |
+| Post           | /feed             |  Like a user's posts |
+| Get            | /users/:id        |  View a user's profile |
+| Post           | /users/:id        |  Like a user's post  |
+| Put            | /users/:id        |  Update your profile |
+| Get            | /users/:id/gear   |  View a user's gear and gear attributes  |
+| Get            | /gear/new         |  Gear creation form  |
+| Get            | /gear/new         |  Create gear         |
+| Get            | /gear/attributes  |  Gear attribute form |
+| Post           | /gear/attributes  |  Add a gear attribute |
+| Get            | /browse/gear/all  |  View all gear in your area  |
+| Put            | /jobs             |  Filter gear in your area by mile radius and gear type |
 
