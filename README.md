@@ -26,6 +26,8 @@ This application is currently hosted on Heroku! [WeGroovy](https://wegroovy.hero
 
 ## Database Model:
 
+This database model includes the storage of metadata and, thusly, an expanded ability to create and store data about various instruments. Further expansion of the model might include a "TagChoice" table, which would store data about user options for various "Tags." 
+
 <img src="https://wegroovybaby.s3.amazonaws.com/Screen+Shot+2020-11-11+at+11.12.20+AM.png">
 
 <br />
