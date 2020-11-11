@@ -30,6 +30,12 @@ This application is currently hosted on Heroku! [WeGroovy](https://wegroovy.hero
 
 <br />
 
+## Portion of SQLAlchemy Query to Return Users in a Specified Locale:
+
+This query utilizes the latitude and longitude returned from the Google Maps Geocoding API and utilizes the sqlachemy "func" operator to implement a function within a query.
+
+<img src="https://wegroovybaby.s3.amazonaws.com/Screen+Shot+2020-11-11+at+11.18.35+AM.png">
+
 <br />
 
 <!-- ## RESTful EndPoints: -->
